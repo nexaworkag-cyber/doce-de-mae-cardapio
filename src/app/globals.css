@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+@import "../styles/prancha.css";
+@import "../styles/detalhe.css";
+@import "../styles/motion.css";
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Rolagem elástica do iOS: chocolate no topo (abertura), baunilha no fim (rodapé). */
+    background: linear-gradient(var(--color-chocolate) 50%, var(--color-baunilha) 50%);
+  }
+
+  body {
+    min-height: 100svh;
+    color: var(--color-espresso);
+    font-family: var(--font-sans);
+    font-size: var(--text-corpo);
+    line-height: var(--text-corpo--line-height);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Detalhe aberto: o fundo não rola por trás da folha */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-rosa-profundo);
+    outline-offset: 3px;
+  }
+  .escuro :focus-visible {
+    outline-color: var(--color-dourado);
+  }
+
+  ::selection {
+    background: var(--color-rosa-argila);
+    color: var(--color-espresso);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .pular-conteudo {
+    position: fixed;
+    inset-block-start: 0.75rem;
+    inset-inline-start: 0.75rem;
+    z-index: 100;
+    padding: 0.75rem 1.1rem;
+    border-radius: 999px;
+    background: var(--color-leite);
+    color: var(--color-espresso);
+    font-weight: 600;
+    transform: translateY(-200%);
+  }
+  .pular-conteudo:focus-visible {
+    transform: none;
+  }
+
+  /* Cartão de produto: o botão (nome) estende a área de toque ao cartão inteiro. */
+  .botao-cartao {
+    text-align: start;
+  }
+  .botao-cartao::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: var(--radius-prancha);
+  }
+  .botao-cartao:focus-visible {
+    outline: none;
+  }
+  .botao-cartao:focus-visible::after {
+    outline: 3px solid var(--color-rosa-profundo);
+    outline-offset: 4px;
+  }
+  .escuro .botao-cartao:focus-visible::after {
+    outline-color: var(--color-dourado);
+  }
+
+  /* Tarja: herança do cardápio antigo ("GOURMET", "DELÍCIAS" em bloco rosa). Usada uma única vez. */
+  .tarja {
+    background: var(--color-rosa-argila);
+    padding-inline: 0.1em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+}

@@ -1,0 +1,111 @@
+/*
+ * Prancha = área de foto do produto, com proporção fixa (sem CLS).
+ * Sem foto real, ela vira um MARCADOR assumido: um "set de fotografia vazio" na cor da marca —
+ * fundo infinito, luz lateral quente, textura de papel e o selo "Foto em breve".
+ * Nunca simula o produto.
+ * Fica na camada "components" para que utilitários do Tailwind (ex.: rounded-s-none) possam sobrescrever.
+ */
+
+@layer components {
+.prancha {
+  --raio: var(--radius-prancha);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: var(--proporcao, 4 / 5);
+  border-radius: var(--raio);
+  background: var(--tom, var(--color-baunilha));
+  container-type: inline-size;
+}
+
+@media (min-width: 768px) {
+  .prancha {
+    aspect-ratio: var(--proporcao-md, var(--proporcao, 4 / 5));
+  }
+}
+
+.prancha-conteudo {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 60%;
+}
+
+.prancha img {
+  object-fit: cover;
+}
+
+/* ---------- Tons (apenas cores oficiais e de apoio) ---------- */
+[data-tom="chocolate"] {
+  --tom: var(--color-chocolate);
+}
+[data-tom="rosa-argila"] {
+  --tom: var(--color-rosa-argila);
+}
+[data-tom="rosa-antigo"] {
+  --tom: var(--color-rosa-antigo);
+}
+[data-tom="figo"] {
+  --tom: var(--color-figo);
+}
+[data-tom="dourado"] {
+  --tom: var(--color-dourado);
+}
+[data-tom="baunilha"] {
+  --tom: var(--color-baunilha);
+}
+
+/* ---------- Set vazio ---------- */
+.prancha-set {
+  background:
+    /* luz de janela, quente, vinda do alto à esquerda */
+    radial-gradient(120% 80% at 12% -6%, rgb(255 246 214 / 0.34), transparent 60%),
+    /* curva do fundo infinito */
+    linear-gradient(
+      to bottom,
+      transparent 0 56%,
+      rgb(41 28 24 / 0.07) 66%,
+      rgb(255 250 230 / 0.05) 67.5%,
+      rgb(41 28 24 / 0.12) 100%
+    ),
+    var(--tom);
+}
+
+/* textura de papel (ruído SVG, rasterizado uma vez) */
+.prancha-set::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* selo: identifica claramente que é um marcador */
+.prancha-selo {
+  position: absolute;
+  inset-inline-start: max(12px, 4.5cqi);
+  inset-block-end: max(12px, 4.5cqi);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.42em 0.8em 0.42em 0.65em;
+  border-radius: 999px;
+  background: var(--color-leite);
+  color: var(--color-espresso);
+  font-size: var(--text-legenda);
+  line-height: 1;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* marcador compacto (miniaturas): só o ícone, centralizado, com o mesmo significado */
+.prancha-compacta .prancha-selo-texto {
+  display: none;
+}
+.prancha-compacta .prancha-selo {
+  inset: 50% auto auto 50%;
+  translate: -50% -50%;
+  padding: 0.45em;
+}
+}

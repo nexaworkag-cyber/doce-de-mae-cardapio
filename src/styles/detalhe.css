@@ -1,0 +1,135 @@
+/*
+ * Folha de detalhe (<dialog> nativo).
+ * Celular: bottom sheet ancorada na base, o próprio dialog rola, ação fixa no rodapé da folha.
+ * ≥ 768 px: painel central em 2 colunas (foto | informações).
+ */
+
+@layer components {
+.detalhe {
+  position: fixed;
+  inset: auto 0 0 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  max-height: min(92dvh, calc(100dvh - 2.5rem));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-folha) var(--radius-folha) 0 0;
+  background: var(--color-leite);
+  color: var(--color-espresso);
+  box-shadow: var(--shadow-folha);
+}
+
+.detalhe[open] {
+  display: block;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  view-transition-name: folha;
+}
+
+.detalhe::backdrop {
+  background: rgb(41 28 24 / 0.58);
+  backdrop-filter: blur(4px);
+}
+
+/* Botão fechar: preso ao topo enquanto a folha rola (contêiner sticky de altura zero) */
+.detalhe-topo {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 0;
+  display: flex;
+  justify-content: flex-end;
+  padding-inline-end: 0.75rem;
+}
+.detalhe-topo > button {
+  margin-top: 0.75rem;
+}
+
+.detalhe-midia {
+  position: relative;
+}
+.detalhe-midia .prancha {
+  border-radius: 0;
+}
+
+/* Alça: zona de arraste no topo da folha */
+.detalhe-alca {
+  position: absolute;
+  inset: 0 4.5rem auto 4.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.625rem;
+  touch-action: none;
+  cursor: grab;
+}
+.detalhe-alca > span {
+  width: 2.75rem;
+  height: 0.3125rem;
+  border-radius: 999px;
+  background: rgb(255 250 230 / 0.85);
+  box-shadow: 0 1px 4px rgb(41 28 24 / 0.25);
+}
+
+.detalhe-info {
+  padding: 1.5rem var(--margem) 2rem;
+}
+
+.detalhe-acao {
+  position: sticky;
+  bottom: 0;
+  padding: 0.75rem var(--margem) max(0.75rem, env(safe-area-inset-bottom));
+  background: var(--color-leite);
+  border-top: 1px solid var(--color-linha);
+}
+
+@media (min-width: 768px) {
+  .detalhe {
+    inset: 0;
+    margin: auto;
+    width: min(62rem, calc(100vw - 4rem));
+    max-height: min(42rem, calc(100dvh - 4rem));
+    height: min(42rem, calc(100dvh - 4rem));
+    border-radius: var(--radius-folha);
+    box-shadow: 0 40px 80px -30px rgb(41 28 24 / 0.6);
+  }
+  .detalhe[open] {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    overflow: hidden;
+  }
+  .detalhe-topo {
+    position: absolute;
+    inset: 0 0 auto auto;
+    height: auto;
+    padding: 0;
+  }
+  .detalhe-topo > button {
+    margin: 1rem;
+  }
+  .detalhe-midia {
+    grid-row: 1 / 3;
+    grid-column: 1;
+  }
+  .detalhe-midia .prancha {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .detalhe-alca {
+    display: none;
+  }
+  .detalhe-info {
+    grid-column: 2;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 3rem 2.5rem 2rem;
+  }
+  .detalhe-acao {
+    grid-column: 2;
+    position: static;
+    padding: 1rem 2.5rem 1.5rem;
+  }
+}
+}
