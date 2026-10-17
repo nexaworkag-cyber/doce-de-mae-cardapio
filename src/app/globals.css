@@ -9,12 +9,12 @@
     color-scheme: light;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    /* Rolagem elástica do iOS: chocolate no topo (abertura), baunilha no fim (rodapé). */
-    background: linear-gradient(var(--color-chocolate) 50%, var(--color-baunilha) 50%);
+    background: var(--color-leite);
   }
 
   body {
     min-height: 100svh;
+    background: var(--color-leite);
     color: var(--color-espresso);
     font-family: var(--font-sans);
     font-size: var(--text-corpo);
@@ -91,11 +91,4 @@
     outline-color: var(--color-dourado);
   }
 
-  /* Tarja: herança do cardápio antigo ("GOURMET", "DELÍCIAS" em bloco rosa). Usada uma única vez. */
-  .tarja {
-    background: var(--color-rosa-argila);
-    padding-inline: 0.1em;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
 }

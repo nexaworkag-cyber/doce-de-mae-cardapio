@@ -46,6 +46,15 @@ Registro das decisões importantes, com o porquê. Data: 15/10/2026 (v0.1).
 | D23 | Fotos observadas pelo elemento pai no IntersectionObserver | Um alvo recortado por `clip-path` (área visível zero) nunca "entra" na tela para o observador — bug encontrado nos testes |
 | D24 | Proporções diferentes para desktop (`proporcaoDesktop`) | Fotos 4:5 ficavam mais altas que a tela em 1280 px |
 
+## v0.2 — Cardápio de cartões (17/10/2026)
+
+| # | Decisão | Por quê |
+|---|---|---|
+| D25 | Layout trocado para **cartões em grade + abas de categoria**; saem abertura de tela inteira, sumário, faixas, interlúdio e revelações ao rolar | Pedido da família: "parece um site"; referência de cardápio de cartões. A v0.1 fica no Git (`13a2033`) |
+| D26 | Marcador de foto neutro (baunilha) e igual em todos os cartões | Calma visual; quando as fotos chegarem, a cor vem do doce |
+| D27 | Sabores dos docinhos num quadro próprio, abaixo dos três centos | Como no cardápio antigo (três colunas); os cartões ficam curtos |
+| D28 | Repositório privado no GitHub (`nexaworkag-cyber/doce-de-mae-cardapio`) | Pedido da família para trabalhar de qualquer computador |
+
 ## Referências usadas (HorizonX — só consulta)
 
 Pesquisado: image reveal, text reveal, galerias, tabs, landing pages de comida/café/vinho. **Nada baixado, nada exportado.**

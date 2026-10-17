@@ -15,6 +15,8 @@ type Props = {
   className?: string;
   /** Miniatura: o marcador mostra só o ícone de câmera. */
   compacto?: boolean;
+  /** Selo "Foto em breve" centralizado (cartões do cardápio). */
+  seloCentral?: boolean;
 };
 
 /**
@@ -30,12 +32,13 @@ export function FotoProduto({
   sizes = "(min-width: 768px) 50vw, 100vw",
   className = "",
   compacto = false,
+  seloCentral = false,
 }: Props) {
   const { foto } = produto;
 
   return (
     <div
-      className={`prancha ${compacto ? "prancha-compacta" : ""} ${className}`}
+      className={`prancha ${compacto ? "prancha-compacta" : ""} ${seloCentral ? "prancha-centralizada" : ""} ${className}`}
       data-tom={produto.tom}
       data-foto-produto={produto.id}
       data-revelar={revelar ? "foto" : undefined}

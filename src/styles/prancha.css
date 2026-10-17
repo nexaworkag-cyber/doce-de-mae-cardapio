@@ -99,6 +99,12 @@
   white-space: nowrap;
 }
 
+/* selo no centro (cartões do cardápio) */
+.prancha-centralizada .prancha-selo {
+  inset: 50% auto auto 50%;
+  translate: -50% -50%;
+}
+
 /* marcador compacto (miniaturas): só o ícone, centralizado, com o mesmo significado */
 .prancha-compacta .prancha-selo-texto {
   display: none;

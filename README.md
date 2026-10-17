@@ -1,10 +1,18 @@
 # Doce de Mãe — Cardápio interativo
 
-Cardápio digital da Doce de Mãe, pensado primeiro para o celular: abertura com o monograma, navegação por
-categorias na base da tela, produtos em composição editorial e detalhe em folha deslizante.
+Cardápio digital da Doce de Mãe, pensado primeiro para o celular: topo com o monograma, abas de categoria,
+produtos em cartões e detalhe em folha deslizante com o botão de encomenda.
 
 **Não é uma loja**: sem carrinho, pagamento, login, cadastro, painel ou frete. A encomenda continua pelo contato
 do cardápio. Projeto independente do e-commerce da marca (pasta, Git e dependências próprios).
+
+## Em outro computador
+
+```bash
+git clone https://github.com/nexaworkag-cyber/doce-de-mae-cardapio.git
+```
+
+Depois `npm install` e `npm run dev`. Antes de começar, `git pull`; ao terminar, `git push`.
 
 ## Comandos
 
@@ -34,11 +42,11 @@ Na primeira vez, instale o navegador dos testes: `npx playwright install chromiu
 
 ```
 src/
-  app/            layout (fontes, metadados, script de movimento), página, ícones
+  app/            layout (fontes, metadados), página, ícones
   data/           cardápio, contato e pendências — a fonte de verdade
   lib/            regras (resolver mínimos de grupo, menor preço), preço em BRL, links de contato
-  components/     peças visuais: Monograma, FotoProduto, Preco, Medida, TituloEditorial, Icone
-  features/       abertura, sumário, capítulos do cardápio, navegação, detalhe, movimento, rodapé
+  components/     peças visuais: Monograma, FotoProduto, Preco, Medida, Icone
+  features/       cabeçalho, abas de categoria, seções e cartões do cardápio, detalhe, rodapé
   styles/         tokens (Tailwind v4), prancha de foto, folha de detalhe, movimento
 public/brand/     monograma oficial (dourado, chocolate, creme)
 tests/e2e/        testes Playwright

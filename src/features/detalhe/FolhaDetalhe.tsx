@@ -98,7 +98,7 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
           </div>
 
           <div className="detalhe-midia">
-            <FotoProduto produto={produto} proporcao="5 / 4" sizes="(min-width: 768px) 512px, 100vw" />
+            <FotoProduto produto={{ ...produto, tom: "baunilha" }} proporcao="5 / 4" seloCentral sizes="(min-width: 768px) 512px, 100vw" />
             <div
               className="detalhe-alca"
               onPointerDown={aoPressionar}
@@ -121,7 +121,7 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
                 </>
               )}
             </p>
-            <h2 id="detalhe-titulo" className="display mt-2 text-[clamp(2rem,1.5rem+2vw,3rem)] leading-[0.95]">
+            <h2 id="detalhe-titulo" className="mt-1.5 font-display text-[clamp(1.75rem,1.4rem+1.5vw,2.5rem)] leading-[1.05] font-extrabold tracking-[-0.02em]">
               {produto.nome}
             </h2>
             <Preco centavos={produto.precoCentavos} unidade={produto.unidadePreco} className="mt-5 text-[1.875rem]" />

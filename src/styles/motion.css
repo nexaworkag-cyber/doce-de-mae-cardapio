@@ -1,8 +1,6 @@
 /*
- * Movimento editorial — só CSS, Web Animations API, IntersectionObserver e View Transitions.
- * Estados iniciais "escondidos" só existem com html[data-motion="ok"], definido antes da pintura
- * por um script inline quando o sistema NÃO pede movimento reduzido. Sem JS, tudo aparece.
- * Regras completas: docs/DESIGN-SYSTEM.md §Movimento.
+ * Movimento — só CSS, Web Animations API e View Transitions. Discreto: o cardápio não se mexe sozinho;
+ * o movimento só responde a um toque. "Reduzir movimento" desliga tudo.
  */
 
 @media (prefers-reduced-motion: no-preference) {
@@ -11,166 +9,34 @@
   }
 }
 
-/* ---------- 1. Abertura: o único momento orquestrado ---------- */
-[data-motion="ok"] .abertura-monograma {
-  animation: revelar-de-baixo var(--motion-hero) var(--ease-editorial) 100ms both;
-}
-[data-motion="ok"] .abertura-linha > span {
-  animation: subir-linha 850ms var(--ease-editorial) calc(300ms + var(--i, 0) * 90ms) both;
-}
-[data-motion="ok"] .abertura-apoio {
-  animation: surgir 700ms var(--ease-editorial) 720ms both;
-}
-[data-motion="ok"] .abertura-convite {
-  animation: surgir 700ms var(--ease-editorial) 920ms both;
-}
-
-@keyframes revelar-de-baixo {
-  from {
-    clip-path: inset(100% 0 0 0);
-    transform: translateY(5%);
-  }
-  to {
-    clip-path: inset(0 0 0 0);
-    transform: none;
-  }
-}
-@keyframes subir-linha {
-  from {
-    transform: translateY(110%);
-  }
-}
-@keyframes surgir {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-}
-
-/* A abertura recua enquanto a folha creme sobe por cima (scroll-driven, sem JS). */
-@supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .abertura-palco {
-      animation: recuar linear both;
-      animation-timeline: scroll(root block);
-      animation-range: 0 100svh;
-    }
-  }
-}
-@keyframes recuar {
-  to {
-    transform: scale(0.94) translateY(-3%);
-    opacity: 0.45;
-  }
-}
-
-/* Máscara de linha: o padding evita cortar acentos (Ã, Í, Ç) na entrelinha apertada. */
-.linha {
-  display: block;
-  overflow: hidden;
-  padding-block: 0.14em 0.06em;
-  margin-block: -0.14em -0.06em;
-}
-.linha > span {
-  display: block;
-}
-
-/* ---------- 2. Revelações ao rolar (o observador adiciona .revelado uma única vez) ---------- */
-
-/* Foto: cortina que sobe + leve aproximação da imagem */
-[data-motion="ok"] [data-revelar="foto"] {
-  clip-path: inset(100% 0 0 0);
-  transition: clip-path 1000ms var(--ease-editorial);
-}
-[data-motion="ok"] [data-revelar="foto"] .prancha-conteudo {
-  transform: scale(1.14);
-  transition: transform 1500ms var(--ease-editorial);
-}
-[data-motion="ok"] [data-revelar="foto"].revelado {
-  clip-path: inset(0 0 0 0);
-}
-[data-motion="ok"] [data-revelar="foto"].revelado .prancha-conteudo {
-  transform: none;
-}
-
-/* Título de capítulo: linhas sobem dentro da máscara */
-[data-motion="ok"] [data-revelar="titulo"] .linha > span {
-  transform: translateY(110%);
-  transition: transform 900ms var(--ease-editorial);
-  transition-delay: calc(var(--i, 0) * 80ms);
-}
-[data-motion="ok"] [data-revelar="titulo"].revelado .linha > span {
-  transform: none;
-}
-
-/* Listas (sabores): entrada em sequência, 40 ms por item */
-[data-motion="ok"] [data-revelar="lista"] > * {
-  opacity: 0;
-  transform: translateY(0.4em);
-  transition:
-    opacity 500ms var(--ease-editorial),
-    transform 650ms var(--ease-editorial);
-  transition-delay: calc(var(--i, 0) * 40ms);
-}
-[data-motion="ok"] [data-revelar="lista"].revelado > * {
-  opacity: 1;
-  transform: none;
-}
-
-/* ---------- 3. Navegação flutuante ---------- */
-.navegacao {
-  opacity: 0;
-  transform: translateY(calc(100% + 1rem));
-  transition:
-    transform 560ms var(--ease-editorial),
-    opacity 320ms var(--ease-macio);
-}
-.navegacao[data-visivel="true"] {
-  opacity: 1;
-  transform: none;
-}
-.navegacao-indicador {
-  transition:
-    clip-path 460ms var(--ease-editorial),
-    opacity var(--motion-fast) var(--ease-macio);
-}
-
-/* ---------- 4. Feedback de toque ---------- */
+/* Feedback de toque no cartão */
 .toque .prancha {
-  transition:
-    transform var(--motion-fast) var(--ease-macio),
-    clip-path 1000ms var(--ease-editorial);
+  transition: transform var(--motion-fast) var(--ease-macio);
 }
 .toque:active .prancha {
-  transform: scale(0.985);
-}
-@media (hover: hover) {
-  .toque:hover [data-revelar="foto"].revelado .prancha-conteudo {
-    transform: scale(1.03);
-    transition: transform var(--motion-editorial) var(--ease-editorial);
-  }
+  transform: scale(0.97);
 }
 
-/* ---------- 5. Detalhe do produto (View Transitions; fallback em WAAPI no JS) ---------- */
+/* Detalhe do produto: a foto passa do cartão para a folha (View Transitions; fallback em WAAPI no JS) */
 ::view-transition-group(foto-ativa) {
-  animation-duration: 520ms;
+  animation-duration: 480ms;
   animation-timing-function: var(--ease-editorial);
 }
 ::view-transition-old(foto-ativa),
 ::view-transition-new(foto-ativa) {
   height: 100%;
   object-fit: cover;
-  animation-duration: 520ms;
+  animation-duration: 480ms;
 }
 ::view-transition-new(folha) {
-  animation: folha-entra 520ms var(--ease-editorial) both;
+  animation: folha-entra 480ms var(--ease-editorial) both;
 }
 ::view-transition-old(folha) {
-  animation: folha-sai 300ms var(--ease-saida) both;
+  animation: folha-sai 280ms var(--ease-saida) both;
 }
 ::view-transition-old(root),
 ::view-transition-new(root) {
-  animation-duration: 360ms;
+  animation-duration: 320ms;
 }
 @keyframes folha-entra {
   from {
@@ -203,7 +69,6 @@
   }
 }
 
-/* ---------- 6. Movimento reduzido: nada se move ---------- */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

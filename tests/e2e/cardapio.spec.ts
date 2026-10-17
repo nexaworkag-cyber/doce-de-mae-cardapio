@@ -16,14 +16,14 @@ async function abrirProduto(page: Page, id: string) {
 }
 
 test.describe("conteúdo do cardápio", () => {
-  test("abertura, sumário e as 4 categorias do cardápio antigo", async ({ page }) => {
+  test("topo, abas e as 4 categorias do cardápio antigo", async ({ page }) => {
     await page.goto("/");
     await expect(page.locator("h1")).toContainText("Doce");
     await expect(page.locator("h1")).toContainText("Mãe");
 
-    const sumario = page.getByRole("region", { name: "Neste cardápio" });
+    const abas = page.getByRole("navigation", { name: "Categorias do cardápio" });
     for (const categoria of CARDAPIO) {
-      await expect(sumario.getByRole("link", { name: new RegExp(categoria.nome, "i") })).toBeVisible();
+      await expect(abas.locator(`a[href="#${categoria.id}"]`)).toBeVisible();
       await expect(page.locator(`section#${categoria.id} h2`)).toContainText(categoria.nome);
     }
   });
@@ -39,12 +39,12 @@ test.describe("conteúdo do cardápio", () => {
     }
   });
 
-  test("todos os sabores dos centos aparecem", async ({ page }) => {
+  test("todos os sabores dos centos aparecem no quadro de sabores", async ({ page }) => {
     await page.goto("/");
+    const quadro = page.getByRole("region", { name: "Sabores" });
     for (const produto of PRODUTOS.filter((p) => p.sabores)) {
-      const cartao = page.locator(`[data-produto="${produto.id}"]`);
       for (const sabor of produto.sabores ?? []) {
-        await expect(cartao.getByText(sabor, { exact: true })).toHaveCount(1);
+        await expect(quadro.getByText(sabor, { exact: true })).toHaveCount(1);
       }
     }
   });
@@ -65,16 +65,6 @@ test.describe("layout", () => {
     await page.goto("/");
     const sobra = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(sobra).toBeLessThanOrEqual(0);
-  });
-
-  test("nenhum título editorial é cortado pela máscara", async ({ page }) => {
-    await page.goto("/");
-    const cortados = await page.evaluate(() =>
-      [...document.querySelectorAll(".linha")]
-        .filter((l) => l.scrollWidth > l.clientWidth + 1)
-        .map((l) => l.textContent),
-    );
-    expect(cortados).toEqual([]);
   });
 
   test("toda área de foto tem tamanho real (nenhuma colapsa)", async ({ page }) => {
@@ -141,7 +131,6 @@ test.describe("layout", () => {
         expect(caixa!.width, seletor).toBeGreaterThanOrEqual(44);
       }
     };
-    await minimo('a[href="#cardapio"]:not(.pular-conteudo)');
     await minimo("nav[aria-label='Categorias do cardápio'] a");
     await minimo("footer a");
 
@@ -164,29 +153,20 @@ test.describe("layout", () => {
 });
 
 test.describe("navegação", () => {
-  test("troca de categoria pela barra flutuante e indicador ativo", async ({ page }) => {
+  test("as abas levam às categorias e marcam a ativa", async ({ page }) => {
     await page.goto("/");
-    const nav = page.getByRole("navigation", { name: "Categorias do cardápio" });
-    await expect(nav).toHaveAttribute("data-visivel", "false");
+    const abas = page.getByRole("navigation", { name: "Categorias do cardápio" });
+    await expect(abas.locator('a[href="#docinhos"]')).toHaveAttribute("aria-current", "true");
 
-    await page.locator("#cardapio").evaluate((el) => window.scrollTo({ top: (el as HTMLElement).offsetTop, behavior: "instant" }));
-    await expect(nav).toHaveAttribute("data-visivel", "true");
-
-    for (const id of ["brownies", "copo-da-felicidade", "docinhos"]) {
-      await nav.locator(`a[href="#${id}"]`).click();
-      await expect(nav.locator(`a[href="#${id}"]`)).toHaveAttribute("aria-current", "true", { timeout: 5000 });
+    for (const id of ["palha-italiana", "copo-da-felicidade", "brownies", "docinhos"]) {
+      await abas.locator(`a[href="#${id}"]`).click();
+      await expect(abas.locator(`a[href="#${id}"]`)).toHaveAttribute("aria-current", "true", { timeout: 5000 });
       await expect
         .poll(() => page.locator(`#${id}`).evaluate((el) => Math.round(el.getBoundingClientRect().top)))
-        .toBeLessThanOrEqual(4);
+        .toBeLessThanOrEqual(100);
+      // As abas continuam presas ao topo.
+      expect(await abas.evaluate((el) => Math.round(el.getBoundingClientRect().top))).toBe(0);
     }
-  });
-
-  test("o sumário leva às categorias", async ({ page }) => {
-    await page.goto("/");
-    await page.getByRole("region", { name: "Neste cardápio" }).getByRole("link", { name: /palha italiana/i }).click();
-    await expect
-      .poll(() => page.locator("#palha-italiana").evaluate((el) => Math.abs(el.getBoundingClientRect().top)))
-      .toBeLessThan(8);
   });
 });
 
