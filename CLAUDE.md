@@ -25,4 +25,4 @@ Cardápio digital (não é loja) da Doce de Mãe. Projeto **independente** do e-
 
 ## Documentação
 
-`docs/CARDAPIO-FONTE.md` · `docs/DIRECAO-VISUAL.md` · `docs/DESIGN-SYSTEM.md` · `docs/DECISOES.md`
+`docs/CONTEXTO.md` (onde paramos) · `docs/CARDAPIO-FONTE.md` · `docs/DIRECAO-VISUAL.md` · `docs/DESIGN-SYSTEM.md` · `docs/DECISOES.md`

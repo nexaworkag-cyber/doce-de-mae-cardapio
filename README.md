@@ -57,5 +57,5 @@ docs/             CARDAPIO-FONTE, DIRECAO-VISUAL, DESIGN-SYSTEM, DECISOES, refer
 ## Regras
 
 - **Nada inventado** — preços, sabores, pesos, mínimos, prazos: só o que está no cardápio antigo.
-- Sem deploy e sem push sem autorização. Git apenas local.
+- Sem deploy sem autorização. Repositório privado no GitHub; contexto para continuar em `docs/CONTEXTO.md`.
 - Detalhes e porquês: `docs/DECISOES.md`.
