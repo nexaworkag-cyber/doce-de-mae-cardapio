@@ -10,17 +10,18 @@ export function SecaoCategoria({ categoria }: { categoria: Categoria }) {
     <section
       id={categoria.id}
       aria-labelledby={`titulo-${categoria.id}`}
+      data-cor={categoria.id}
       className="moldura scroll-mt-20 pt-10 [--texto-apoio:var(--color-cacau)] md:pt-14"
     >
       <h2
         id={`titulo-${categoria.id}`}
         tabIndex={-1}
-        className="font-display text-secao font-extrabold tracking-[-0.02em] outline-none"
+        className="rounded-[1.5rem] bg-(--cat) px-5 py-4 font-display text-secao font-extrabold tracking-[-0.02em] text-(--cat-texto) outline-none md:px-8 md:py-5"
       >
         {categoria.nome}
       </h2>
       {categoria.recheios && (
-        <p className="mt-1.5 text-apoio text-cacau">
+        <p className="mt-3 text-apoio text-cacau">
           <span className="font-semibold text-espresso">Recheios: </span>
           {categoria.recheios.join(", ")}
         </p>

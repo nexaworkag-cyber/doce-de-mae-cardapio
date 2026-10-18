@@ -44,7 +44,10 @@ Brownies · Palha italiana (5×5 e Mini palha) · Copo da felicidade
 
 - Archivo 900 expandida só no nome da marca; Archivo 800 nos títulos de categoria e "Faça sua encomenda!".
 - Figtree no resto: nome do produto 16–17 px negrito, informações 13 px, preço 20 px com algarismos tabulares.
-- Fundo leite, cartões nata com sombra suave, texto espresso; chocolate e dourado no topo; rosa só em detalhes.
+- Fundo **creme**, cartões nata, texto espresso. Topo chocolate com dourado; rodapé **figo** com creme.
+- Cada categoria tem sua cor (faixa do título, aba ativa e tom suave do marcador de foto):
+  Docinhos rosa-profundo · Brownies chocolate · Palha italiana dourado · Copo da felicidade rosa-argila.
+  Rosa-antigo e cacau entram nos tons suaves; rosa-argila nos pontos dos sabores. Mapa em `src/styles/categorias.css`.
 
 ## Movimento
 

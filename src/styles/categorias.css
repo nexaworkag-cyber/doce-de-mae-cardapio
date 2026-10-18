@@ -1,0 +1,33 @@
+/*
+ * Cor de cada categoria (só cores da marca). Cada seção ganha uma faixa de título na sua cor,
+ * a aba ativa usa a mesma cor e o marcador de foto recebe um tom suave dela.
+ * Contraste: textos claros (creme) só sobre rosa-profundo e chocolate; espresso sobre dourado e rosa-argila
+ * (títulos grandes e negritos, ≥ 3:1).
+ */
+@layer components {
+  [data-cor="docinhos"] {
+    --cat: var(--color-rosa-profundo);
+    --cat-texto: var(--color-creme);
+    --cat-suave: color-mix(in srgb, var(--color-rosa-antigo) 26%, var(--color-nata));
+  }
+  [data-cor="brownies"] {
+    --cat: var(--color-chocolate);
+    --cat-texto: var(--color-creme);
+    --cat-suave: color-mix(in srgb, var(--color-cacau) 22%, var(--color-nata));
+  }
+  [data-cor="palha-italiana"] {
+    --cat: var(--color-dourado);
+    --cat-texto: var(--color-espresso);
+    --cat-suave: color-mix(in srgb, var(--color-dourado) 40%, var(--color-nata));
+  }
+  [data-cor="copo-da-felicidade"] {
+    --cat: var(--color-rosa-argila);
+    --cat-texto: var(--color-espresso);
+    --cat-suave: color-mix(in srgb, var(--color-rosa-argila) 26%, var(--color-nata));
+  }
+
+  /* Marcador de foto no tom suave da categoria (vence o data-tom por vir depois) */
+  .prancha.prancha-categoria {
+    --tom: var(--cat-suave);
+  }
+}

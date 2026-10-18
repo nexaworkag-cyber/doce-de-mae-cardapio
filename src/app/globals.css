@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
 @import "../styles/prancha.css";
+@import "../styles/categorias.css";
 @import "../styles/detalhe.css";
 @import "../styles/motion.css";
 
@@ -9,12 +10,12 @@
     color-scheme: light;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    background: var(--color-leite);
+    background: var(--color-creme);
   }
 
   body {
     min-height: 100svh;
-    background: var(--color-leite);
+    background: var(--color-creme);
     color: var(--color-espresso);
     font-family: var(--font-sans);
     font-size: var(--text-corpo);

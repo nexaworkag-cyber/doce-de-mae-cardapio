@@ -50,7 +50,7 @@ export function AbasCategorias({ itens }: { itens: readonly Item[] }) {
   return (
     <nav
       aria-label="Categorias do cardápio"
-      className="sticky top-0 z-30 border-b border-linha/70 bg-leite/90 backdrop-blur-md"
+      className="sticky top-0 z-30 border-b border-linha/70 bg-creme/90 backdrop-blur-md"
     >
       <div ref={listaRef} className="moldura flex gap-1.5 overflow-x-auto py-3 [scrollbar-width:none] md:justify-center">
         {itens.map((item) => {
@@ -59,11 +59,12 @@ export function AbasCategorias({ itens }: { itens: readonly Item[] }) {
             <a
               key={item.id}
               data-aba={item.id}
+              data-cor={item.id}
               href={`#${item.id}`}
               onClick={(e) => irPara(e, item.id)}
               aria-current={atual ? "true" : undefined}
               className={`inline-flex h-11 shrink-0 items-center rounded-full px-3.5 text-apoio font-semibold transition-colors duration-200 md:px-5 ${
-                atual ? "bg-espresso text-creme" : "bg-nata text-espresso ring-1 ring-linha hover:bg-baunilha"
+                atual ? "bg-(--cat) text-(--cat-texto)" : "bg-nata text-espresso ring-1 ring-linha hover:bg-baunilha"
               }`}
             >
               <span className="md:hidden">{item.rotuloCurto}</span>

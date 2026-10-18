@@ -53,6 +53,7 @@ Registro das decisões importantes, com o porquê. Data: 15/10/2026 (v0.1).
 | D25 | Layout trocado para **cartões em grade + abas de categoria**; saem abertura de tela inteira, sumário, faixas, interlúdio e revelações ao rolar | Pedido da família: "parece um site"; referência de cardápio de cartões. A v0.1 fica no Git (`13a2033`) |
 | D26 | Marcador de foto neutro (baunilha) e igual em todos os cartões | Calma visual; quando as fotos chegarem, a cor vem do doce |
 | D27 | Sabores dos docinhos num quadro próprio, abaixo dos três centos | Como no cardápio antigo (três colunas); os cartões ficam curtos |
+| D29 | **Cores da marca distribuídas por categoria** (faixa de título, aba ativa, tom suave do marcador); fundo creme; rodapé figo | Pedido da família: usar as cores da marca bem distribuídas. Texto creme só sobre rosa-profundo/chocolate/figo; espresso sobre dourado/rosa-argila |
 | D28 | Repositório privado no GitHub (`nexaworkag-cyber/doce-de-mae-cardapio`) | Pedido da família para trabalhar de qualquer computador |
 
 ## Referências usadas (HorizonX — só consulta)

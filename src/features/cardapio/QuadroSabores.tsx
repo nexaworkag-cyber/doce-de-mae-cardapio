@@ -19,7 +19,7 @@ export function QuadroSabores({ produtos }: { produtos: readonly Produto[] }) {
       <div className="mt-5 grid gap-6 md:grid-cols-3 md:gap-8">
         {comSabores.map((produto) => (
           <div key={produto.id}>
-            <p className="border-b border-linha pb-2 text-apoio font-bold">{produto.nome}</p>
+            <p className="border-b-2 border-(--cat) pb-2 text-apoio font-bold text-rosa-profundo">{produto.nome}</p>
             <ul className="mt-3 columns-2 gap-x-4 md:columns-1">
               {produto.sabores?.map((sabor) => (
                 <li key={sabor} className="flex break-inside-avoid items-baseline gap-2 pb-2 text-apoio">

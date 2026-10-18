@@ -27,13 +27,13 @@ export function CartaoMenu({ produto, ocultarMedida = false }: { produto: Produt
       data-produto={produto.id}
       className="toque relative flex h-full flex-col rounded-[1.75rem] bg-nata p-2 pb-4 text-center shadow-cartao ring-1 ring-linha/60 transition-[translate,box-shadow] duration-200 md:hover:-translate-y-0.5 md:hover:shadow-flutuante"
     >
-      {/* Marcador neutro (baunilha) em todos os cartões: quando as fotos chegarem, o doce é a cor. */}
+      {/* Marcador no tom suave da categoria: quando as fotos chegarem, o doce é a cor. */}
       <FotoProduto
         produto={{ ...produto, tom: "baunilha" }}
         proporcao="1 / 1"
         seloCentral
         sizes="(min-width: 1024px) 22vw, (min-width: 768px) 30vw, 46vw"
-        className="[--raio:1.375rem]"
+        className="prancha-categoria [--raio:1.375rem]"
       />
       <h3 className="mt-3 px-2 text-[1rem] leading-tight font-bold tracking-[-0.01em] md:text-[1.0625rem]">
         <BotaoProduto id={produto.id}>{produto.nome}</BotaoProduto>
