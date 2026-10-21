@@ -293,6 +293,8 @@ test.describe("movimento e estabilidade", () => {
   });
 
   test("CLS abaixo de 0,1 com rede lenta (fontes chegando tarde)", async ({ page }) => {
+    // Mede estabilidade, não velocidade: a 750 kbps as fotos em alta qualidade levam mais de 30 s para chegar.
+    test.setTimeout(120_000);
     const cdp = await page.context().newCDPSession(page);
     await cdp.send("Network.enable");
     await cdp.send("Network.emulateNetworkConditions", {

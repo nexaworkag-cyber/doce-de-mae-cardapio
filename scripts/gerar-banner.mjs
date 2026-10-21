@@ -26,7 +26,7 @@ for (const [nome, c] of Object.entries(CORTES)) {
     .extract({ left, top, width: largura, height: altura })
     .resize({ width: Math.min(c.saida, largura), withoutEnlargement: true, kernel: "lanczos3" })
     .sharpen({ sigma: 0.7, m1: 0.6, m2: 1.4 })
-    .webp({ quality: 90, effort: 6, smartSubsample: true })
+    .webp({ quality: 95, effort: 6, smartSubsample: true })
     .toFile(`public/banner/topo-${nome}.webp`);
   console.log(nome, `${info.width}×${info.height}`, `${Math.round(info.size / 1024)} KB`);
 }
