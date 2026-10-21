@@ -155,9 +155,9 @@ export const CARDAPIO: readonly Categoria[] = [
             ],
             foto: {
               // Nome com versão: o otimizador de imagens do Next guarda cache por URL.
-              src: "/fotos/cento-recheado-3.webp",
-              alt: "Três fotos de docinhos recheados: bandeja de docinhos claros e vermelhos decorados com laços e taças, um aberto com recheio cremoso coberto de coco e outro aberto com recheio de chocolate crocante",
-              largura: 1672,
+              src: "/fotos/cento-recheado-4.webp",
+              alt: "Três fotos de docinhos recheados: bandeja de docinhos vermelhos decorados com laços, um aberto com recheio cremoso coberto de coco e outro aberto com recheio de chocolate crocante",
+              largura: 1229,
               altura: 941,
             },
             tom: "figo",
