@@ -1,6 +1,8 @@
+import { textoMedida } from "@/lib/cardapio";
+
 /**
- * Medida do cardápio ("5×5", "3×3") com um quadrado preenchido desenhado na proporção real
- * entre as medidas. A unidade não é informada no cardápio, por isso não é exibida.
+ * Medida do pedaço ("Pedaço de 5 × 5 cm") com um quadrado preenchido desenhado na proporção real
+ * entre as medidas (5 cm maior que 3 cm), para dar noção de tamanho de relance.
  */
 export function Medida({ medida, className = "" }: { medida: string; className?: string }) {
   const [a, b] = medida.split("×").map((n) => Number.parseFloat(n));
@@ -13,8 +15,8 @@ export function Medida({ medida, className = "" }: { medida: string; className?:
         className="block shrink-0 rounded-[2px] bg-current opacity-45"
         style={{ width: `${lado}em`, height: `${lado}em` }}
       />
-      <span aria-hidden="true">{medida}</span>
-      <span className="sr-only">{Number.isFinite(b) ? `${a} por ${b}` : medida}</span>
+      <span aria-hidden="true">Pedaço de {textoMedida(medida)}</span>
+      <span className="sr-only">{Number.isFinite(b) ? `Pedaço de ${a} por ${b} centímetros` : `Pedaço de ${textoMedida(medida)}`}</span>
     </span>
   );
 }

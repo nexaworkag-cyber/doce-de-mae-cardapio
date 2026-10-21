@@ -17,18 +17,6 @@ export const PENDENCIAS: readonly Pendencia[] = [
     comoEstaNaInterface: "Marcador \"Foto em breve\" em todos os produtos e aviso no rodapé.",
   },
   {
-    id: "peso-recheado",
-    assunto: "Peso do cento recheado",
-    situacao: "Texto pequeno e borrado no original: \"19G\" (pode ser \"18G\").",
-    comoEstaNaInterface: "Exibido como 19 g. Confirmar.",
-  },
-  {
-    id: "peso-significado",
-    assunto: "Significado do peso (15 g / 19 g)",
-    situacao: "O original diz só \"15G\"; presume-se que seja o peso de cada docinho.",
-    comoEstaNaInterface: "Exibido como no original, sem dizer \"cada\".",
-  },
-  {
     id: "cento-quantidade",
     assunto: "Encomenda abaixo de um cento",
     situacao: "O cardápio só traz preço por cento. Não diz se há meio cento ou quantidade menor.",
@@ -45,12 +33,6 @@ export const PENDENCIAS: readonly Pendencia[] = [
     assunto: "Preço por unidade",
     situacao: "Brownies, palhas e copos têm preço e mínimo em unidades; presume-se preço por unidade.",
     comoEstaNaInterface: "Preço exibido junto do mínimo, sem escrever \"por unidade\".",
-  },
-  {
-    id: "unidade-medida",
-    assunto: "Unidade das medidas 5×5 e 3×3",
-    situacao: "O original não diz a unidade (provavelmente centímetros).",
-    comoEstaNaInterface: "Exibido como 5×5 e 3×3, sem unidade.",
   },
   {
     id: "opcoes-copo-brownie",

@@ -34,7 +34,7 @@ export type Produto = {
   precoCentavos: number;
   /** Quando o preço é do cento (docinhos). */
   unidadePreco?: "cento";
-  /** Medida exatamente como no cardápio. A unidade (cm?) não é informada. */
+  /** Medida do pedaço como no cardápio ("5×5"); em centímetros, confirmado pela confeitaria. */
   medida?: string;
   porcao?: string;
   /** Pedido mínimo em unidades, quando informado para o próprio produto. */
@@ -146,8 +146,8 @@ export const CARDAPIO: readonly Categoria[] = [
             precoCentavos: 20000,
             unidadePreco: "cento",
             saboresPorPedido: 4,
-            // Leitura incerta no original ("19G" ou "18G") — ver PENDENCIAS.
-            peso: "19 g",
+            // O original parecia "19G"; a confeitaria confirmou 15 g por unidade (21/10/2026).
+            peso: "15 g",
             sabores: [
               "Prestígio",
               "Ninho com Uva",

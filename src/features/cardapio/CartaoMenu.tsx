@@ -1,5 +1,5 @@
 import type { Produto } from "@/data/cardapio";
-import { textoMinimo } from "@/lib/cardapio";
+import { textoMedida, textoMinimo } from "@/lib/cardapio";
 import { FotoProduto } from "@/components/FotoProduto";
 import { Preco } from "@/components/Preco";
 import { BotaoProduto } from "@/features/detalhe/BotaoProduto";
@@ -24,9 +24,9 @@ export function CartaoMenu({
 }) {
   const temFoto = produto.foto !== null;
   const informacoes = [
-    ocultarMedida ? undefined : produto.medida,
-    produto.saboresPorPedido ? `Até ${produto.saboresPorPedido} sabores` : undefined,
-    produto.peso,
+    ocultarMedida || !produto.medida ? undefined : `Pedaço de ${textoMedida(produto.medida)}`,
+    produto.saboresPorPedido ? `Até ${produto.saboresPorPedido} sabores por cento` : undefined,
+    produto.peso && `${produto.peso} cada unidade`,
     produto.pedidoMinimo ? textoMinimo(produto.pedidoMinimo) : undefined,
   ].filter(Boolean);
 

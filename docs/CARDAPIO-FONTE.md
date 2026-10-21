@@ -72,7 +72,7 @@
 |---|---|---|---|---|---|---|
 | Docinhos gourmet | Docinhos gourmet | — | Tradicionais (Cento tradicionais) | R$ 150,00 o cento | até 4 sabores · 15 g · 11 sabores | — |
 | | | | Especiais (Cento especiais) | R$ 170,00 o cento | até 4 sabores · 15 g · 7 sabores | — |
-| | | | Recheados (Cento recheado) | R$ 200,00 o cento | até 4 sabores · 19 g · 5 sabores | — |
+| | | | Recheados (Cento recheado) | R$ 200,00 o cento | até 4 sabores · 15 g (confirmado) · 5 sabores | — |
 | Brownies | Mais delícias | — | Recheado | R$ 7,00 | 5×5 · mínimo 30 un. | Recheios: Ninho, Brigadeiro, Nutella, Doce de Leite (categoria) |
 | | | | Mini | R$ 3,00 | 3×3 · mínimo 50 un. | (idem) |
 | Palha italiana | Mais delícias | 5×5 (sem título) | Tradicional | R$ 4,00 | 5×5 · descrição | mínimo 30 un. |
@@ -95,13 +95,13 @@ Espelhadas em `src/data/pendencias.ts`. **Nenhuma é exibida como fato.**
 | # | Assunto | Situação | Como está no site |
 |---|---|---|---|
 | P1 | **Fotos** | Nenhuma foto real fornecida | Marcador "Foto em breve" em todos os produtos + aviso no rodapé |
-| P2 | **Peso do cento recheado** | Texto borrado: "19G" ou "18G" | Exibido como 19 g — **confirmar** |
-| P3 | Significado do peso | "15G" presumivelmente é o peso de cada docinho | Exibido sem "cada" |
+| P2 | Peso do cento recheado | ✅ Resolvido (confirmado pela confeitaria em 21/10/2026): 15 g cada unidade, como os demais | Exibido como "15 g cada unidade" |
+| P3 | Significado do peso | ✅ Resolvido (confirmado pela confeitaria em 21/10/2026): é o peso de cada unidade | Exibido como "15 g cada unidade" |
 | P4 | Menos que um cento | Só há preço por cento | Nada além do preço do cento |
 | P5 | **Mínimo das palhas 5×5** | "Mínimo 30 uni." aparece uma vez, abaixo da Oreo | Exibido como mínimo do grupo 5×5 — **confirmar** |
 | P6 | ~~Recheios do brownie mini~~ **Resolvida (21/10/2026):** a família confirmou que o mini não tem recheio | Lista aparece abaixo dos dois brownies | Lista no nível da categoria; o mini não pede recheio no pedido |
 | P7 | Preço unitário | Presume-se preço por unidade (brownie, palha, copo) | Preço + mínimo, sem escrever "por unidade" |
-| P8 | Unidade de 5×5 / 3×3 | Não informada (provavelmente cm) | Exibido sem unidade |
+| P8 | Unidade de 5×5 / 3×3 | ✅ Resolvido (confirmado pela confeitaria em 21/10/2026): centímetros | Exibido como "Pedaço de 5 × 5 cm" |
 | P9 | Opções do copo Brownie | "Ninho · Brigadeiro · Doce de Leite" sem rótulo | Lista sem rótulo de "escolha" |
 | P10 | **Telefone é WhatsApp?** | Ícone ilegível | Botão "Encomendar pelo WhatsApp" + link de ligação. Desligável em `src/data/contato.ts` |
 | P11 | **Grafia** | Cappucino, Ferrero Roche, Geléia, Banoffe, Tie Dye | Grafia original mantida até decisão |

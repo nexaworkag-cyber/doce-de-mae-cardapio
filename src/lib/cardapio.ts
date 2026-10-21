@@ -54,7 +54,12 @@ export function menorPreco(categoria: Categoria): { centavos: number; unidade?: 
   return { centavos: maisBarato.precoCentavos, unidade: maisBarato.unidadePreco };
 }
 
-/** "un." no singular e no plural, como no cardápio. */
+/** Mínimo por extenso ("Mínimo de 30 unidades"): o "un." do cardápio confunde quem não conhece a abreviação. */
 export function textoMinimo(unidades: number): string {
-  return `Mínimo ${unidades} un.`;
+  return `Mínimo de ${unidades} ${unidades === 1 ? "unidade" : "unidades"}`;
+}
+
+/** Medida do pedaço em centímetros (confirmado pela confeitaria em 21/10/2026): "5×5" → "5 × 5 cm". */
+export function textoMedida(medida: string): string {
+  return `${medida.replace("×", " × ")} cm`;
 }

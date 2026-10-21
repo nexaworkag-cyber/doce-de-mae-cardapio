@@ -1,5 +1,5 @@
 import { CONTATO } from "@/data/contato";
-import { buscarProduto, type ProdutoResolvido } from "@/lib/cardapio";
+import { buscarProduto, textoMinimo, type ProdutoResolvido } from "@/lib/cardapio";
 import { formatarPreco } from "@/lib/preco";
 
 /**
@@ -46,7 +46,7 @@ export function pendenciaDoItem(regras: RegrasPedido, quantidade: number, escolh
   if (regras.escolha && escolhas.length === 0) {
     return regras.escolha.tipo === "sabores" ? "Escolha pelo menos 1 sabor" : regras.escolha.tipo === "recheios" ? "Escolha o recheio" : "Escolha o sabor";
   }
-  if (quantidade < regras.minimo) return regras.unidade === "cento" ? "Escolha a quantidade" : `Mínimo de ${regras.minimo} un.`;
+  if (quantidade < regras.minimo) return regras.unidade === "cento" ? "Escolha a quantidade" : textoMinimo(regras.minimo);
   return null;
 }
 
@@ -55,7 +55,7 @@ export function subtotal(p: ProdutoResolvido, quantidade: number): number {
 }
 
 export function textoQuantidade(quantidade: number, unidade: RegrasPedido["unidade"]): string {
-  return unidade === "cento" ? `${quantidade} ${quantidade === 1 ? "cento" : "centos"}` : `${quantidade} un.`;
+  return unidade === "cento" ? `${quantidade} ${quantidade === 1 ? "cento" : "centos"}` : `${quantidade} ${quantidade === 1 ? "unidade" : "unidades"}`;
 }
 
 const ROTULO_ESCOLHA: Record<TipoEscolha, string> = { sabores: "Sabores", recheios: "Recheio", opcoes: "Sabor" };

@@ -35,7 +35,7 @@ export function EscolhaItens({
           {maximo && !unica ? `${escolhidos.length} de ${maximo}` : ""}
         </span>
       </legend>
-      {maximo && !unica && <p className="mt-0.5 text-apoio text-tinta-suave">Até {maximo} sabores por pedido.</p>}
+      {maximo && !unica && <p className="mt-0.5 text-apoio text-tinta-suave">Até {maximo} sabores por cento.</p>}
       <ul className="mt-3 grid grid-cols-1 gap-2 min-[380px]:grid-cols-2">
         {itens.map((item) => {
           const ordem = escolhidos.indexOf(item) + 1;

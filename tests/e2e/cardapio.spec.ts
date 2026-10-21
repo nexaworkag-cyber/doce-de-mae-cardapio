@@ -203,15 +203,15 @@ test.describe("detalhe do produto", () => {
     const d = dialogo(page);
     await expect(d.getByRole("heading", { level: 2 })).toHaveText("Tradicional");
     await expect(d).toContainText("Massa chocolate, biscoito maisena envolto no ninho");
-    await expect(d).toContainText("5×5");
-    await expect(d).toContainText("Mínimo 30 un.");
+    await expect(d).toContainText("Pedaço de 5 × 5 cm");
+    await expect(d).toContainText("Mínimo de 30 unidades");
     await page.keyboard.press("Escape");
     await expect(d).toBeHidden();
 
     await abrirProduto(page, "mini-palha-oreo-3x3");
     await expect(page.locator("#detalhe-contexto")).toHaveText(/Palha italiana\s*Mini palha/);
     await expect(d).toContainText("3,00");
-    await expect(d).toContainText("Mínimo 50 un.");
+    await expect(d).toContainText("Mínimo de 50 unidades");
   });
 
   test("Esc e o botão voltar do navegador fecham", async ({ page }) => {

@@ -206,8 +206,8 @@ function listarEspecificacoes(p: ProdutoResolvido) {
   const itens: { chave: string; conteudo: ReactNode }[] = [];
   if (p.medida) itens.push({ chave: "medida", conteudo: <Medida medida={p.medida} /> });
   if (p.porcaoEfetiva) itens.push({ chave: "porcao", conteudo: p.porcaoEfetiva });
-  if (p.saboresPorPedido) itens.push({ chave: "sabores", conteudo: `Até ${p.saboresPorPedido} sabores` });
-  if (p.peso) itens.push({ chave: "peso", conteudo: p.peso });
+  if (p.saboresPorPedido) itens.push({ chave: "sabores", conteudo: `Até ${p.saboresPorPedido} sabores por cento` });
+  if (p.peso) itens.push({ chave: "peso", conteudo: `${p.peso} cada unidade` });
   if (p.pedidoMinimoEfetivo) itens.push({ chave: "minimo", conteudo: textoMinimo(p.pedidoMinimoEfetivo) });
   return itens;
 }
