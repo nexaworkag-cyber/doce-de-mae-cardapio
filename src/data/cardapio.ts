@@ -44,6 +44,8 @@ export type Produto = {
   peso?: string;
   descricao?: string;
   sabores?: readonly string[];
+  /** Produto sem recheio, mesmo numa categoria com recheios (Brownie mini, confirmado pela família em 21/10/2026). */
+  semRecheio?: true;
   /** Opções listadas sob o produto, sem rótulo no original (ex.: Copo Brownie). */
   opcoes?: readonly string[];
   /** Foto real do produto. `null` = ainda não fornecida → marcador "Foto em breve". */
@@ -198,6 +200,7 @@ export const CARDAPIO: readonly Categoria[] = [
             precoCentavos: 300,
             medida: "3×3",
             pedidoMinimo: 50,
+            semRecheio: true,
             foto: {
               src: "/fotos/brownie-mini.webp",
               alt: "Caixa com brownies em forminhas brancas de papel, com a casquinha brilhante e craquelada por cima",

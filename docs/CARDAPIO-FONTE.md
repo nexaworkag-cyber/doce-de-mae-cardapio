@@ -86,6 +86,7 @@ Regra de exibição: **o cartão mostra só o que o cardápio informa no própri
 aparecem uma vez, no grupo, como no original. A folha de detalhe mostra os dois já resolvidos.
 
 Contato (→ `src/data/contato.ts`): (21) 97680-4627 · Instagram @docedemaetelier_.
+**Atualizado em 21/10/2026 pela família:** o número de WhatsApp e ligação passou a ser (21) 96669-6546.
 
 ## 4. Pendências (dados ausentes ou ambíguos)
 
@@ -98,7 +99,7 @@ Espelhadas em `src/data/pendencias.ts`. **Nenhuma é exibida como fato.**
 | P3 | Significado do peso | "15G" presumivelmente é o peso de cada docinho | Exibido sem "cada" |
 | P4 | Menos que um cento | Só há preço por cento | Nada além do preço do cento |
 | P5 | **Mínimo das palhas 5×5** | "Mínimo 30 uni." aparece uma vez, abaixo da Oreo | Exibido como mínimo do grupo 5×5 — **confirmar** |
-| P6 | Recheios do brownie mini | Lista aparece abaixo dos dois brownies | Exibidos no nível da categoria |
+| P6 | ~~Recheios do brownie mini~~ **Resolvida (21/10/2026):** a família confirmou que o mini não tem recheio | Lista aparece abaixo dos dois brownies | Lista no nível da categoria; o mini não pede recheio no pedido |
 | P7 | Preço unitário | Presume-se preço por unidade (brownie, palha, copo) | Preço + mínimo, sem escrever "por unidade" |
 | P8 | Unidade de 5×5 / 3×3 | Não informada (provavelmente cm) | Exibido sem unidade |
 | P9 | Opções do copo Brownie | "Ninho · Brigadeiro · Doce de Leite" sem rótulo | Lista sem rótulo de "escolha" |

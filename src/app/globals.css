@@ -3,6 +3,7 @@
 @import "../styles/prancha.css";
 @import "../styles/detalhe.css";
 @import "../styles/motion.css";
+@import "../styles/sacola.css";
 
 @layer base {
   html {
@@ -27,6 +28,11 @@
   /* Detalhe aberto: o fundo não rola por trás da folha */
   html:has(dialog[open]) {
     overflow: hidden;
+  }
+
+  /* Com a barra da sacola na base, o fim da página não fica escondido atrás dela */
+  body:has(.barra-sacola) {
+    padding-bottom: 5.5rem;
   }
 
   /* Anel de foco: rosa-profundo no claro, dourado dentro de .escuro (o token muda sozinho) */

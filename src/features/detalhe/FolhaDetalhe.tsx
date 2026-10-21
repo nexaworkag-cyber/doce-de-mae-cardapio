@@ -1,15 +1,17 @@
 "use client";
 
-import { useRef, type MouseEvent, type PointerEvent, type ReactNode, type RefObject } from "react";
-import { CONTATO } from "@/data/contato";
+import { useRef, useState, type MouseEvent, type PointerEvent, type ReactNode, type RefObject } from "react";
 import type { ProdutoResolvido } from "@/lib/cardapio";
 import { textoMinimo } from "@/lib/cardapio";
-import { linkTelefone, linkWhatsApp } from "@/lib/contato";
+import { pendenciaDoItem, regrasDoProduto, subtotal } from "@/lib/pedido";
+import { formatarPreco } from "@/lib/preco";
 import { FotoProduto } from "@/components/FotoProduto";
 import { Icone } from "@/components/Icone";
 import { Medida } from "@/components/Medida";
 import { Preco } from "@/components/Preco";
-import { ListaSabores } from "@/features/cardapio/ListaSabores";
+import { EscolhaItens } from "@/features/sacola/EscolhaItens";
+import { SeletorQuantidade } from "@/features/sacola/SeletorQuantidade";
+import { useSacola } from "@/features/sacola/SacolaProvider";
 
 type Props = {
   ref: RefObject<HTMLDialogElement | null>;
@@ -67,8 +69,6 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
     if (fora) onFechar();
   };
 
-  const especificacoes = produto ? listarEspecificacoes(produto) : [];
-
   return (
     <dialog
       ref={ref}
@@ -111,69 +111,94 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
             </div>
           </div>
 
-          <div className="detalhe-info">
-            <p id="detalhe-contexto" className="flex flex-wrap items-center gap-1.5 text-apoio font-medium text-tinta-suave">
-              {produto.categoria.nome}
-              {produto.grupoNome && (
-                <>
-                  <Icone nome="seta-direita" className="size-3.5" />
-                  {produto.grupoNome}
-                </>
-              )}
-            </p>
-            <h2 id="detalhe-titulo" className="titulo-produto mt-1.5">
-              {produto.nome}
-            </h2>
-            <Preco centavos={produto.precoCentavos} unidade={produto.unidadePreco} className="mt-5 text-preco-lg" />
-
-            {especificacoes.length > 0 && (
-              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-apoio font-medium text-tinta-suave" aria-label="Informações do cardápio">
-                {especificacoes.map((item) => (
-                  <li key={item.chave}>{item.conteudo}</li>
-                ))}
-              </ul>
-            )}
-
-            {produto.descricao && <p className="mt-6 max-w-[40ch] text-corpo-lg">{produto.descricao}</p>}
-
-            {produto.opcoes && <p className="mt-6 text-corpo-lg">{produto.opcoes.join(", ")}</p>}
-
-            {produto.sabores && (
-              <ListaSabores sabores={produto.sabores} revelar={false} className="mt-8 border-t border-divisor pt-5" />
-            )}
-
-            {produto.recheios && (
-              <p className="mt-6 max-w-[40ch] text-corpo-lg">
-                <span className="font-semibold">Recheios: </span>
-                <span className="text-tinta-suave">{produto.recheios.join(", ")}</span>
-              </p>
-            )}
-          </div>
-
-          <div className="detalhe-acao">
-            {CONTATO.whatsapp ? (
-              <a
-                href={linkWhatsApp(produto)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="botao-acao w-full"
-              >
-                <Icone nome="whatsapp" className="size-5" />
-                Encomendar pelo WhatsApp
-              </a>
-            ) : (
-              <a
-                href={linkTelefone}
-                className="botao-escuro w-full"
-              >
-                <Icone nome="telefone" className="size-5" />
-                Ligar para encomendar
-              </a>
-            )}
-          </div>
+          <ConteudoProduto key={produto.id} produto={produto} onAdicionado={() => onFechar()} />
         </>
       )}
     </dialog>
+  );
+}
+
+/**
+ * Informações do produto + montagem do pedido (escolhas e quantidade) + botão "Adicionar à sacola".
+ * Com key = id do produto, as escolhas recomeçam a cada produto aberto.
+ */
+function ConteudoProduto({ produto, onAdicionado }: { produto: ProdutoResolvido; onAdicionado: () => void }) {
+  const { adicionar, abrir } = useSacola();
+  const regras = regrasDoProduto(produto);
+  const [quantidade, setQuantidade] = useState(regras.minimo);
+  const [escolhas, setEscolhas] = useState<string[]>([]);
+  const pendencia = pendenciaDoItem(regras, quantidade, escolhas);
+  const especificacoes = listarEspecificacoes(produto);
+
+  const adicionarNaSacola = () => {
+    if (pendencia) return;
+    adicionar({ produtoId: produto.id, quantidade, escolhas });
+    onAdicionado();
+    // Depois que a folha fecha, a sacola abre mostrando o pedido.
+    window.setTimeout(abrir, 320);
+  };
+
+  return (
+    <>
+      <div className="detalhe-info">
+        <p id="detalhe-contexto" className="flex flex-wrap items-center gap-1.5 text-apoio font-medium text-tinta-suave">
+          {produto.categoria.nome}
+          {produto.grupoNome && (
+            <>
+              <Icone nome="seta-direita" className="size-3.5" />
+              {produto.grupoNome}
+            </>
+          )}
+        </p>
+        <h2 id="detalhe-titulo" className="titulo-produto mt-1.5">
+          {produto.nome}
+        </h2>
+        <Preco centavos={produto.precoCentavos} unidade={produto.unidadePreco} className="mt-5 text-preco-lg" />
+
+        {especificacoes.length > 0 && (
+          <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-apoio font-medium text-tinta-suave" aria-label="Informações do cardápio">
+            {especificacoes.map((item) => (
+              <li key={item.chave}>{item.conteudo}</li>
+            ))}
+          </ul>
+        )}
+
+        {produto.descricao && <p className="mt-6 max-w-[40ch] text-corpo-lg">{produto.descricao}</p>}
+
+        <div className="mt-7 border-t border-divisor pt-5">
+          {regras.escolha && (
+            <EscolhaItens
+              titulo={regras.escolha.titulo}
+              itens={regras.escolha.itens}
+              maximo={regras.escolha.maximo}
+              escolhidos={escolhas}
+              onMudar={setEscolhas}
+            />
+          )}
+          <div className={regras.escolha ? "mt-6" : undefined}>
+            <SeletorQuantidade
+              valor={quantidade}
+              minimo={regras.minimo}
+              rotulo={regras.unidade === "cento" ? "Quantos centos" : "Quantidade"}
+              sufixo={regras.unidade === "cento" ? (quantidade === 1 ? "cento" : "centos") : "un."}
+              onMudar={setQuantidade}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div className="detalhe-acao">
+        <button
+          type="button"
+          className="botao-escuro w-full"
+          aria-disabled={pendencia ? true : undefined}
+          onClick={adicionarNaSacola}
+        >
+          <Icone nome="sacola" className="size-5" />
+          {pendencia ?? `Adicionar à sacola · ${formatarPreco(subtotal(produto, quantidade))}`}
+        </button>
+      </div>
+    </>
   );
 }
 

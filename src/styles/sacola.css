@@ -1,0 +1,275 @@
+/*
+ * Montagem do pedido e sacola. Só tokens do design system (docs/DESIGN-SYSTEM.md).
+ * Escolha de sabor: pílula clara com "+"; escolhida, a marca vira o número da ordem em destaque.
+ */
+
+@layer components {
+/* ---------- Escolha de sabores/recheios ---------- */
+.escolha {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.escolha-item {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.375rem 0.875rem 0.375rem 0.375rem;
+  border-radius: 999px;
+  background: var(--color-superficie);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-divisor) 90%, transparent);
+  font-size: var(--text-corpo);
+  font-weight: 500;
+  line-height: 1.25;
+  text-align: start;
+  transition:
+    background-color var(--motion-fast) var(--ease-macio),
+    box-shadow var(--motion-fast) var(--ease-macio),
+    opacity var(--motion-fast);
+}
+.escolha-item:hover {
+  box-shadow: inset 0 0 0 1px var(--color-ponto);
+}
+.escolha-item[aria-pressed="true"] {
+  background: var(--color-realce);
+  box-shadow: inset 0 0 0 1.5px var(--color-destaque);
+  font-weight: 600;
+}
+.escolha-item[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.escolha-marca {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  background: var(--color-realce);
+  color: var(--color-tinta);
+  font-size: var(--text-apoio);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  transition: background-color var(--motion-fast), color var(--motion-fast), scale var(--motion-fast) var(--ease-editorial);
+}
+.escolha-marca svg {
+  width: 1rem;
+  height: 1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.escolha-item[aria-pressed="true"] .escolha-marca {
+  background: var(--color-destaque);
+  color: var(--color-fundo);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .escolha-item:active .escolha-marca {
+    scale: 0.88;
+  }
+}
+
+/* ---------- Quantidade ---------- */
+.seletor-quantidade {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  background: var(--color-superficie);
+  box-shadow: inset 0 0 0 1px var(--color-divisor);
+}
+.seletor-quantidade button {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  color: var(--color-tinta);
+  transition: background-color var(--motion-fast);
+}
+.seletor-quantidade button:hover:not(:disabled) {
+  background: var(--color-realce);
+}
+.seletor-quantidade button:disabled {
+  color: var(--color-tinta-suave);
+  opacity: 0.45;
+}
+.seletor-quantidade svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.seletor-quantidade input {
+  width: 3.25ch;
+  border: 0;
+  background: transparent;
+  color: var(--color-tinta);
+  font-size: var(--text-corpo-lg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+.seletor-quantidade input::-webkit-outer-spin-button,
+.seletor-quantidade input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.seletor-sufixo {
+  padding-inline: 0.3em 0.15em;
+  color: var(--color-tinta-suave);
+  font-size: var(--text-apoio);
+}
+
+/* Botão de adicionar desabilitado (aria-disabled mantém o foco e o texto explica o que falta) */
+.detalhe-acao [aria-disabled="true"] {
+  background: var(--color-realce);
+  color: var(--color-tinta-suave);
+  cursor: not-allowed;
+}
+
+/* ---------- Barra da sacola (presa à base) ---------- */
+.barra-sacola {
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  padding: 0.75rem var(--margem) max(0.75rem, env(safe-area-inset-bottom));
+  pointer-events: none;
+}
+.barra-sacola-botao {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  width: min(100%, 28rem);
+  height: 3.5rem;
+  padding-inline: 1.25rem;
+  border-radius: 999px;
+  background: var(--color-painel);
+  color: var(--color-creme);
+  box-shadow: var(--shadow-flutuante);
+  font-weight: 600;
+  animation: barra-entra 420ms var(--ease-editorial) both;
+}
+.barra-sacola-contador {
+  position: absolute;
+  inset: -0.55rem -0.65rem auto auto;
+  display: grid;
+  place-items: center;
+  min-width: 1.25rem;
+  height: 1.25rem;
+  padding-inline: 0.25rem;
+  border-radius: 999px;
+  background: var(--color-dourado);
+  color: var(--color-espresso);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+@keyframes barra-entra {
+  from {
+    translate: 0 120%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .barra-sacola-botao {
+    animation: none;
+  }
+}
+
+/* ---------- Folha da sacola ---------- */
+.sacola {
+  position: fixed;
+  inset: auto 0 0 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  max-height: min(92dvh, calc(100dvh - 2.5rem));
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-painel) var(--radius-painel) 0 0;
+  background: var(--color-fundo);
+  color: var(--color-tinta);
+  box-shadow: var(--shadow-folha);
+}
+.sacola[open] {
+  display: flex;
+  flex-direction: column;
+}
+.sacola::backdrop {
+  background: rgb(41 28 24 / 0.58);
+  backdrop-filter: blur(4px);
+}
+.sacola-cabecalho {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem var(--margem) 0.75rem;
+}
+.sacola-lista {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.25rem var(--margem) 1rem;
+}
+.sacola-item {
+  display: flex;
+  gap: 0.875rem;
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--color-divisor);
+}
+.sacola-rodape {
+  padding: 1rem var(--margem) max(1rem, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--color-divisor);
+  background: var(--color-fundo);
+}
+
+@media (min-width: 768px) {
+  .sacola {
+    inset: 0 0 0 auto;
+    width: min(30rem, 100vw);
+    max-height: 100dvh;
+    height: 100dvh;
+    border-radius: var(--radius-painel) 0 0 var(--radius-painel);
+  }
+  .sacola-cabecalho,
+  .sacola-lista,
+  .sacola-rodape {
+    padding-inline: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sacola[open] {
+    animation: sacola-sobe 420ms var(--ease-editorial);
+  }
+  @media (min-width: 768px) {
+    .sacola[open] {
+      animation-name: sacola-entra-lado;
+    }
+  }
+}
+@keyframes sacola-sobe {
+  from {
+    translate: 0 100%;
+  }
+}
+@keyframes sacola-entra-lado {
+  from {
+    translate: 100% 0;
+  }
+}
+}

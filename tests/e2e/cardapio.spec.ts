@@ -331,3 +331,65 @@ test.describe("movimento e estabilidade", () => {
     expect(erros).toEqual([]);
   });
 });
+
+test.describe("pedido pela sacola", () => {
+  test("escolhe sabores (até 4), adiciona à sacola e monta a mensagem do WhatsApp", async ({ page }) => {
+    await page.goto("/");
+    await page.evaluate(() => localStorage.clear());
+    await page.reload();
+
+    await abrirProduto(page, "cento-tradicionais");
+    const d = dialogo(page);
+    const adicionar = d.locator(".detalhe-acao button");
+    await expect(adicionar).toHaveText(/Escolha pelo menos 1 sabor/);
+    await expect(adicionar).toHaveAttribute("aria-disabled", "true");
+
+    for (const sabor of ["Brigadeiro", "Beijinho", "Churros", "Morango"]) {
+      await d.getByRole("button", { name: sabor, exact: true }).click();
+    }
+    await expect(d.getByRole("button", { name: "Brigadeiro", exact: true })).toHaveAttribute("aria-pressed", "true");
+    // Limite do cardápio: até 4 sabores.
+    await expect(d.getByRole("button", { name: "Amendoim", exact: true })).toHaveAttribute("aria-disabled", "true");
+    await d.getByRole("button", { name: /Aumentar/ }).click();
+    await expect(adicionar).toHaveText(/Adicionar à sacola · R\$\s?300,00/);
+    await adicionar.click();
+
+    const sacola = page.locator("dialog.sacola");
+    await expect(sacola).toBeVisible();
+    await expect(sacola).toContainText("Brigadeiro, Beijinho, Churros, Morango");
+    const href = await sacola.locator('a[href^="https://wa.me/5521966696546?"]').getAttribute("href");
+    const mensagem = decodeURIComponent(href!.split("text=")[1]);
+    expect(mensagem).toContain("Docinhos gourmet · Tradicionais — 2 centos");
+    expect(mensagem).toContain("Sabores: Brigadeiro, Beijinho, Churros, Morango");
+    expect(mensagem).toContain("Total estimado: R$");
+
+    await sacola.getByRole("button", { name: "Fechar sacola" }).click();
+    await expect(page.locator(".barra-sacola")).toContainText("Ver sacola");
+  });
+
+  test("produto por unidade começa no mínimo e pede o recheio", async ({ page }) => {
+    await page.goto("/");
+    await abrirProduto(page, "brownie-recheado-5x5");
+    const d = dialogo(page);
+    await expect(d.locator(".seletor-quantidade input")).toHaveValue("30");
+    await expect(d.getByRole("button", { name: /Diminuir/ })).toBeDisabled();
+    await expect(d.locator(".detalhe-acao button")).toHaveText(/Escolha o recheio/);
+    await d.getByRole("button", { name: "Nutella", exact: true }).click();
+    await expect(d.locator(".detalhe-acao button")).toHaveText(/Adicionar à sacola · R\$\s?210,00/);
+  });
+});
+
+test("brownie mini não tem recheio; no recheado, recheio é escolha única", async ({ page }) => {
+  await page.goto("/");
+  await abrirProduto(page, "brownie-mini-3x3");
+  await expect(dialogo(page)).not.toContainText("Escolha o recheio");
+  await expect(dialogo(page).locator(".detalhe-acao button")).toHaveText(/Adicionar à sacola · R\$\s?150,00/);
+  await page.keyboard.press("Escape");
+  await expect(dialogo(page)).toBeHidden();
+  await abrirProduto(page, "brownie-recheado-5x5");
+  const d = dialogo(page);
+  await d.getByRole("button", { name: "Ninho", exact: true }).click();
+  await d.getByRole("button", { name: "Nutella", exact: true }).click();
+  await expect(d.getByRole("button", { name: "Ninho", exact: true })).toHaveAttribute("aria-pressed", "false");
+  await expect(d.getByRole("button", { name: "Nutella", exact: true })).toHaveAttribute("aria-pressed", "true");
+});

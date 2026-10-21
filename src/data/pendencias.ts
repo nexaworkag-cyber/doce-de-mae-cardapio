@@ -41,12 +41,6 @@ export const PENDENCIAS: readonly Pendencia[] = [
     comoEstaNaInterface: "Exibido como mínimo do grupo 5×5. Confirmar.",
   },
   {
-    id: "recheios-brownie-mini",
-    assunto: "Recheios do brownie mini 3×3",
-    situacao: "A lista de recheios aparece abaixo dos dois brownies. Não está claro se o mini também é recheado.",
-    comoEstaNaInterface: "Recheios exibidos no nível da categoria, como no original.",
-  },
-  {
     id: "preco-unitario",
     assunto: "Preço por unidade",
     situacao: "Brownies, palhas e copos têm preço e mínimo em unidades; presume-se preço por unidade.",
@@ -63,12 +57,6 @@ export const PENDENCIAS: readonly Pendencia[] = [
     assunto: "Opções do copo Brownie",
     situacao: "\"Ninho · Brigadeiro · Doce de Leite\" aparece sem rótulo. Presume-se que sejam sabores à escolha.",
     comoEstaNaInterface: "Lista exibida sem rótulo de \"escolha\".",
-  },
-  {
-    id: "whatsapp",
-    assunto: "Telefone é WhatsApp?",
-    situacao: "O ícone ao lado de (21) 97680-4627 está ilegível no arquivo.",
-    comoEstaNaInterface: "Botão \"Encomendar pelo WhatsApp\" + número com link de ligação. Desligável em src/data/contato.ts.",
   },
   {
     id: "grafia",

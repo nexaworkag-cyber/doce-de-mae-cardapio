@@ -5,9 +5,12 @@
  */
 export const CONTATO = {
   chamada: "Faça sua encomenda!",
-  telefone: "(21) 97680-4627",
-  /** Mesmo número em formato internacional, só dígitos. */
-  telefoneE164: "5521976804627",
+  /** Número atual (WhatsApp e ligação), informado pela família em 21/10/2026. O cardápio antigo trazia (21) 97680-4627. */
+  telefone: "(21) 96669-6546",
+  /** Mesmo número em formato internacional, só dígitos (link de ligação). */
+  telefoneE164: "5521966696546",
   whatsapp: true,
+  /** Número que recebe as mensagens do WhatsApp (pedidos da sacola e contato). */
+  whatsappE164: "5521966696546",
   instagram: "docedemaetelier_",
 } as const;

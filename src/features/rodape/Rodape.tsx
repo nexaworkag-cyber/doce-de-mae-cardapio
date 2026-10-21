@@ -1,8 +1,9 @@
 import { CONTATO } from "@/data/contato";
 import { PRODUTOS } from "@/lib/cardapio";
-import { linkInstagram, linkTelefone, linkWhatsApp } from "@/lib/contato";
+import { linkInstagram, linkTelefone } from "@/lib/contato";
 import { Icone } from "@/components/Icone";
 import { Monograma } from "@/components/Monograma";
+import { BotaoEncomendar } from "@/features/sacola/Sacola";
 
 /** Fechamento: o chamado do cardápio antigo ("Faça sua encomenda!") e os contatos dele. */
 export function Rodape() {
@@ -14,15 +15,10 @@ export function Rodape() {
         <Monograma cor="dourado" sizes="64px" className="h-auto w-11" />
         <h2 className="titulo-secao mt-4">{CONTATO.chamada}</h2>
         {CONTATO.whatsapp && (
-          <a
-            href={linkWhatsApp()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="botao-acao mt-6 w-full max-w-sm"
-          >
+          <BotaoEncomendar className="botao-acao mt-6 w-full max-w-sm">
             <Icone nome="whatsapp" className="size-5" />
             Encomendar pelo WhatsApp
-          </a>
+          </BotaoEncomendar>
         )}
         <ul className="mt-4 flex flex-col items-center gap-1 sm:flex-row sm:gap-6">
           <li>

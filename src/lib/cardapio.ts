@@ -16,7 +16,7 @@ function resolver(categoria: Categoria, grupo: Grupo, produto: Produto): Produto
     grupoNome: grupo.nome,
     pedidoMinimoEfetivo: produto.pedidoMinimo ?? grupo.pedidoMinimo,
     porcaoEfetiva: produto.porcao ?? grupo.porcao,
-    recheios: categoria.recheios,
+    recheios: produto.semRecheio ? undefined : categoria.recheios,
   };
 }
 
