@@ -321,7 +321,12 @@ export const CARDAPIO: readonly Categoria[] = [
             nome: "Banoffe",
             nomeCompleto: "Copo da felicidade Banoffe",
             precoCentavos: 1500,
-            foto: null,
+            foto: {
+              src: "/fotos/copo-banoffe.webp",
+              alt: "Copos da felicidade banoffe em camadas: farofa de biscoito, doce de leite, banana com canela e chantilly, com colherinhas douradas",
+              largura: 1254,
+              altura: 1254,
+            },
             tom: "rosa-argila",
           },
         ],

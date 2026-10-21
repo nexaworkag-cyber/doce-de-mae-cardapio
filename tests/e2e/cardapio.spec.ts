@@ -56,7 +56,10 @@ test.describe("conteúdo do cardápio", () => {
       await expect(foto).toHaveAttribute("role", "img");
       await expect(foto).toHaveAttribute("aria-label", /foto em breve/i);
     }
-    await expect(page.locator("footer")).toContainText("marcadores provisórios");
+    // O aviso do rodapé só existe enquanto algum produto estiver sem foto.
+    const aviso = expect(page.locator("footer"));
+    if (PRODUTOS.some((p) => !p.foto)) await aviso.toContainText("marcadores provisórios");
+    else await aviso.not.toContainText("marcadores provisórios");
   });
 });
 
@@ -161,8 +164,14 @@ test.describe("navegação", () => {
     for (const id of ["palha-italiana", "copo-da-felicidade", "brownies", "docinhos"]) {
       await abas.locator(`a[href="#${id}"]`).click();
       await expect(abas.locator(`a[href="#${id}"]`)).toHaveAttribute("aria-current", "true", { timeout: 5000 });
+      // A categoria chega ao topo, ou a página chega ao fim (a última categoria pode não ter altura para subir até lá).
       await expect
-        .poll(() => page.locator(`#${id}`).evaluate((el) => Math.round(el.getBoundingClientRect().top)))
+        .poll(() =>
+          page.locator(`#${id}`).evaluate((el) => {
+            const fim = Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 2;
+            return fim ? 0 : Math.round(el.getBoundingClientRect().top);
+          }),
+        )
         .toBeLessThanOrEqual(100);
       // As abas continuam presas ao topo.
       expect(await abas.evaluate((el) => Math.round(el.getBoundingClientRect().top))).toBe(0);
