@@ -219,6 +219,10 @@
 @utility botao-acao {
   @apply botao bg-acao text-sobre-acao shadow-flutuante hover:bg-acao-pressionada active:bg-acao-pressionada;
 }
+/* Ação secundária da sacola: continuar comprando (rosa da marca; texto 5,95:1) */
+@utility botao-continuar {
+  @apply botao bg-destaque text-fundo hover:brightness-110;
+}
 /* Ação alternativa: ligar */
 @utility botao-escuro {
   @apply botao bg-tinta text-sobre-painel;

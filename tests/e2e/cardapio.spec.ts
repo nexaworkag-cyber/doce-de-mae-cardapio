@@ -363,7 +363,8 @@ test.describe("pedido pela sacola", () => {
     expect(mensagem).toContain("Sabores: Brigadeiro, Beijinho, Churros, Morango");
     expect(mensagem).toContain("Total estimado: R$");
 
-    await sacola.getByRole("button", { name: "Fechar sacola" }).click();
+    await sacola.getByRole("button", { name: "Continuar comprando" }).click();
+    await expect(sacola).toBeHidden();
     await expect(page.locator(".barra-sacola")).toContainText("Ver sacola");
   });
 

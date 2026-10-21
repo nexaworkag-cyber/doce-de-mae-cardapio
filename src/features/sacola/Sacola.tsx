@@ -116,7 +116,11 @@ export function FolhaSacola() {
             Ligar para encomendar
           </a>
         )}
-        <button type="button" onClick={limpar} className="mt-2 min-h-11 w-full text-apoio font-semibold text-tinta-suave underline-offset-4 hover:underline">
+        <button type="button" onClick={fechar} className="botao-continuar mt-2 w-full">
+          <Icone nome="seta-direita" className="size-5 rotate-180" />
+          Continuar comprando
+        </button>
+        <button type="button" onClick={limpar} className="mt-1 min-h-11 w-full text-apoio font-semibold text-tinta-suave underline-offset-4 hover:underline">
           Esvaziar sacola
         </button>
       </div>
