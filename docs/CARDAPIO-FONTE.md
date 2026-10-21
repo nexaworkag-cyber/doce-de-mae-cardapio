@@ -85,7 +85,7 @@
 Regra de exibição: **o cartão mostra só o que o cardápio informa no próprio produto**; mínimo e porção de grupo
 aparecem uma vez, no grupo, como no original. A folha de detalhe mostra os dois já resolvidos.
 
-Contato (→ `src/data/contato.ts`): (21) 97680-4627 · Instagram @docedemaetelier_.
+Contato (→ `src/data/contato.ts`): (21) 97680-4627 · Instagram @docedemaeatelier_ (corrigido em 21/10/2026: o original grafava "docedemaetelier_").
 **Atualizado em 21/10/2026 pela família:** o número de WhatsApp e ligação passou a ser (21) 96669-6546.
 
 ## 4. Pendências (dados ausentes ou ambíguos)

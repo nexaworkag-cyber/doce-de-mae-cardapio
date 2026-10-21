@@ -12,5 +12,5 @@ export const CONTATO = {
   whatsapp: true,
   /** Número que recebe as mensagens do WhatsApp (pedidos da sacola e contato). */
   whatsappE164: "5521966696546",
-  instagram: "docedemaetelier_",
+  instagram: "docedemaeatelier_",
 } as const;
