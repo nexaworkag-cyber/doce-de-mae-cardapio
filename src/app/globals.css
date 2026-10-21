@@ -1,7 +1,6 @@
 @import "tailwindcss";
 @import "../styles/tokens.css";
 @import "../styles/prancha.css";
-@import "../styles/categorias.css";
 @import "../styles/detalhe.css";
 @import "../styles/motion.css";
 
@@ -10,13 +9,13 @@
     color-scheme: light;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
-    background: var(--color-creme);
+    background: var(--color-fundo);
   }
 
   body {
     min-height: 100svh;
-    background: var(--color-creme);
-    color: var(--color-espresso);
+    background: var(--color-fundo);
+    color: var(--color-tinta);
     font-family: var(--font-sans);
     font-size: var(--text-corpo);
     line-height: var(--text-corpo--line-height);
@@ -30,17 +29,15 @@
     overflow: hidden;
   }
 
+  /* Anel de foco: rosa-profundo no claro, dourado dentro de .escuro (o token muda sozinho) */
   :focus-visible {
-    outline: 3px solid var(--color-rosa-profundo);
+    outline: 3px solid var(--color-destaque);
     outline-offset: 3px;
-  }
-  .escuro :focus-visible {
-    outline-color: var(--color-dourado);
   }
 
   ::selection {
-    background: var(--color-rosa-argila);
-    color: var(--color-espresso);
+    background: var(--color-marcador);
+    color: var(--color-tinta);
   }
 
   h1,
@@ -61,8 +58,8 @@
     z-index: 100;
     padding: 0.75rem 1.1rem;
     border-radius: 999px;
-    background: var(--color-leite);
-    color: var(--color-espresso);
+    background: var(--color-fundo);
+    color: var(--color-tinta);
     font-weight: 600;
     transform: translateY(-200%);
   }
@@ -79,17 +76,63 @@
     position: absolute;
     inset: 0;
     z-index: 1;
-    border-radius: var(--radius-prancha);
+    border-radius: var(--radius-cartao);
   }
   .botao-cartao:focus-visible {
     outline: none;
   }
   .botao-cartao:focus-visible::after {
-    outline: 3px solid var(--color-rosa-profundo);
+    outline: 3px solid var(--color-destaque);
     outline-offset: 4px;
   }
-  .escuro .botao-cartao:focus-visible::after {
-    outline-color: var(--color-dourado);
+
+  /* Foto do cartão: fio interno de 1 px, para a borda da foto não se perder no creme do cartão */
+  [data-produto] .prancha::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    box-shadow: inset 0 0 0 1px rgb(73 54 47 / 0.07);
+    pointer-events: none;
   }
 
+  /* Preço do cartão: um pontilhado curto acima, como nas cartas impressas.
+     Fica dentro do respiro que já existia (pt-3); não mexe na altura. */
+  .preco-cartao {
+    position: relative;
+  }
+  .preco-cartao::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 0.1875rem;
+    inset-inline-start: 50%;
+    width: 2.25rem;
+    height: 3px;
+    translate: -50% 0;
+    background: radial-gradient(circle, var(--color-ponto) 0.9px, transparent 1.25px) 0 50% / 6px 3px repeat-x;
+  }
+  /* cartão horizontal (celular): pontilhado alinhado ao texto, à esquerda */
+  @media (max-width: 767.98px) {
+    .preco-cartao-inicio::before {
+      inset-inline-start: 0.5rem;
+      translate: 0 0;
+    }
+  }
+
+  /* Aba ativa: um ponto dourado na base (mesmo ponto do pontilhado). Absoluto: a aba não muda de tamanho. */
+  .aba {
+    position: relative;
+  }
+  .aba[aria-current]::after {
+    content: "";
+    position: absolute;
+    inset-block-end: 0.3125rem;
+    inset-inline-start: 50%;
+    width: 4px;
+    height: 4px;
+    translate: -50% 0;
+    border-radius: 999px;
+    background: var(--color-acabamento);
+  }
 }

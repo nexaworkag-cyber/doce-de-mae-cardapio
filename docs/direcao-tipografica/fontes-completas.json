@@ -1,0 +1,203 @@
+{
+  "data": "2026-10-18T03:15:10.396Z",
+  "fonte": "google/fonts (arquivos completos)",
+  "acentosFaltando": {
+    "Fraunces": [],
+    "Caprasimo": [],
+    "Gloock": [],
+    "Instrument Serif": [],
+    "Bodoni Moda": [],
+    "Playfair Display": [],
+    "DM Serif Display": [],
+    "Young Serif": [],
+    "Ballet": [],
+    "Cormorant": [],
+    "Shrikhand": []
+  },
+  "suportado": {
+    "Fraunces": {
+      "recursos": [
+        "liga",
+        "ss01",
+        "case"
+      ],
+      "eixos": [
+        "SOFT",
+        "WONK",
+        "opsz",
+        "wght"
+      ]
+    },
+    "Fraunces Italic": {
+      "recursos": [
+        "liga",
+        "ss01",
+        "case"
+      ],
+      "eixos": [
+        "SOFT",
+        "WONK",
+        "opsz",
+        "wght"
+      ]
+    },
+    "Caprasimo": {
+      "recursos": [],
+      "eixos": []
+    },
+    "Gloock": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": []
+    },
+    "Instrument Serif": {
+      "recursos": [
+        "liga",
+        "ss01"
+      ],
+      "eixos": []
+    },
+    "Instrument Serif Italic": {
+      "recursos": [
+        "liga",
+        "ss01"
+      ],
+      "eixos": []
+    },
+    "Bodoni Moda": {
+      "recursos": [
+        "liga",
+        "ss01",
+        "ss02",
+        "ss03",
+        "onum",
+        "smcp",
+        "c2sc",
+        "frac"
+      ],
+      "eixos": [
+        "opsz",
+        "wght"
+      ]
+    },
+    "Bodoni Moda Italic": {
+      "recursos": [
+        "liga",
+        "ss01",
+        "ss02",
+        "ss03",
+        "onum",
+        "smcp",
+        "c2sc",
+        "frac"
+      ],
+      "eixos": [
+        "opsz",
+        "wght"
+      ]
+    },
+    "Playfair Display": {
+      "recursos": [
+        "liga",
+        "dlig",
+        "smcp",
+        "c2sc",
+        "case",
+        "frac"
+      ],
+      "eixos": [
+        "wght"
+      ]
+    },
+    "Playfair Display Italic": {
+      "recursos": [
+        "liga",
+        "dlig",
+        "smcp",
+        "c2sc",
+        "case",
+        "frac"
+      ],
+      "eixos": [
+        "wght"
+      ]
+    },
+    "DM Serif Display": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": []
+    },
+    "DM Serif Display Italic": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": []
+    },
+    "Young Serif": {
+      "recursos": [
+        "liga",
+        "case",
+        "frac"
+      ],
+      "eixos": []
+    },
+    "Ballet": {
+      "recursos": [
+        "liga",
+        "salt",
+        "ss01",
+        "ss02",
+        "frac"
+      ],
+      "eixos": [
+        "opsz"
+      ]
+    },
+    "Cormorant": {
+      "recursos": [
+        "liga",
+        "dlig",
+        "calt",
+        "ss01",
+        "ss02",
+        "ss03",
+        "smcp",
+        "c2sc",
+        "case",
+        "frac"
+      ],
+      "eixos": [
+        "wght"
+      ]
+    },
+    "Cormorant Italic": {
+      "recursos": [
+        "liga",
+        "dlig",
+        "calt",
+        "ss01",
+        "ss02",
+        "ss03",
+        "ss07",
+        "ss08",
+        "case",
+        "frac"
+      ],
+      "eixos": [
+        "wght"
+      ]
+    },
+    "Shrikhand": {
+      "recursos": [
+        "liga",
+        "ordn"
+      ],
+      "eixos": []
+    }
+  }
+}

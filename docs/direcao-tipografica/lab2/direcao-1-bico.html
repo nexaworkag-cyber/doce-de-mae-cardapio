@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direção 1: Bico de confeitar</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Figtree:wght@400..700&display=block">
+<link rel="stylesheet" href="base.css">
+<!--
+  DIREÇÃO 1 · BICO DE CONFEITAR
+  Lettering original, desenhado como um traço contínuo de confeitar: monolinear, cantos redondos
+  e uma "gota" onde o bico para (os terminais). O acento do Á é uma pincelada com gota na ponta.
+  Composição aberta, sem cartão: a palavra pousa no creme e, embaixo, uma borda de bolo (festonê)
+  em rosa leva o monograma no centro, como o enfeite do topo.
+  Grade: altura das maiúsculas = 100, traço 16, gota r 10,5.
+-->
+<style>
+  .topo { padding-top: max(28px, env(safe-area-inset-top)); padding-bottom: clamp(18px, 5vw, 34px); }
+  .palavra { width: 100%; max-width: 860px; margin-inline: auto; }
+  .palavra .traco { fill: none; stroke: var(--chocolate); stroke-width: 16; stroke-linecap: round; stroke-linejoin: round; }
+  .palavra .gota { fill: var(--chocolate); }
+  .palavra .brilho { fill: none; stroke: var(--creme); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; opacity: .42; }
+  .borda { position: relative; margin: clamp(30px, 8vw, 44px) auto 0; max-width: 860px; }
+  .borda svg { width: 100%; height: auto; }
+  .borda .festone { fill: none; stroke: var(--rosa-argila); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+  .borda .gota-r { fill: var(--rosa-argila); }
+  .borda img { position: absolute; left: 50%; top: 50%; translate: -50% -50%; height: clamp(50px, 13vw, 84px); width: auto; }
+  @media (min-width: 1024px) { .topo { padding-top: 56px; } .borda { margin-top: 26px; } }
+</style>
+</head>
+<body>
+<header class="topo moldura">
+  <h1>
+    <span class="sr">Doce de Mãe — Cardápio</span>
+    <svg class="palavra" viewBox="-6 -44 570 150" aria-hidden="true">
+      <defs>
+        <g id="d1-letras">
+          <!-- C -->
+          <path d="M58.4 15.6A32 42 0 1 0 58.4 84.4"/>
+          <!-- A -->
+          <g transform="translate(70 0)"><path d="M8 92 34 8 60 92M18 62H50"/></g>
+          <!-- R -->
+          <g transform="translate(148 0)"><path d="M8 92V8H32A21 21 0 0 1 32 50H8M30 50 56 92"/></g>
+          <!-- D -->
+          <g transform="translate(222 0)"><path d="M8 92V8H28A34 42 0 0 1 28 92Z"/></g>
+          <!-- Á (acento: pincelada que termina em gota) -->
+          <g transform="translate(300 0)"><path d="M8 92 34 8 60 92M18 62H50M29 -12 41 -28"/></g>
+          <!-- P -->
+          <g transform="translate(378 0)"><path d="M8 92V8H32A22 22 0 0 1 32 52H8"/></g>
+          <!-- I -->
+          <g transform="translate(450 0)"><path d="M8 8V92"/></g>
+          <!-- O: começa e termina no alto, onde fica a gota -->
+          <g transform="translate(476 0)"><path d="M40 8A32 42 0 1 1 39.9 8"/></g>
+        </g>
+      </defs>
+      <use href="#d1-letras" class="traco"/>
+      <g class="gota">
+        <circle cx="58.4" cy="15.6" r="10.5"/><circle cx="58.4" cy="84.4" r="10.5"/>
+        <circle cx="78" cy="92" r="10.5"/><circle cx="130" cy="92" r="10.5"/>
+        <circle cx="156" cy="92" r="10.5"/><circle cx="204" cy="92" r="10.5"/>
+        <circle cx="308" cy="92" r="10.5"/><circle cx="360" cy="92" r="10.5"/><circle cx="341" cy="-28" r="11.5"/>
+        <circle cx="386" cy="92" r="10.5"/>
+        <circle cx="458" cy="8" r="10.5"/><circle cx="458" cy="92" r="10.5"/>
+        <circle cx="516" cy="8" r="10.5"/>
+      </g>
+      <use href="#d1-letras" class="brilho"/>
+    </svg>
+  </h1>
+  <div class="borda" aria-hidden="true">
+    <svg viewBox="0 0 600 40">
+      <path class="festone" d="M6 26a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0"/>
+      <path class="festone" d="M354 26a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0a12 12 0 0 1 24 0"/>
+      <g class="gota-r"><circle cx="6" cy="26" r="4.5"/><circle cx="246" cy="26" r="4.5"/><circle cx="354" cy="26" r="4.5"/><circle cx="594" cy="26" r="4.5"/></g>
+    </svg>
+    <img src="../../../public/brand/monograma-chocolate.png" alt="">
+  </div>
+</header>
+<main class="moldura">
+  <div class="abas"><span>Docinhos</span><span>Brownies</span><span>Palha</span><span>Copo</span></div>
+  <div class="categoria">Docinhos gourmet</div>
+  <div class="cartoes"><div></div><div></div><div></div><div></div></div>
+</main>
+</body>
+</html>

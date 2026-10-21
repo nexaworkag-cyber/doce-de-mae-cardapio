@@ -2,8 +2,8 @@ import { textoMinimo } from "@/lib/cardapio";
 import { Medida } from "@/components/Medida";
 
 /**
- * Informações que o cardápio dá para um GRUPO de produtos (medida comum, porção, mínimo).
- * Sempre no mesmo estilo e logo abaixo do título do grupo, para não parecer botão nem ficar solto.
+ * Regras que o cardápio dá para um GRUPO de produtos (medida comum, porção, mínimo).
+ * Faixa clara logo abaixo do título: é regra de encomenda, precisa ser vista, mas não pode parecer botão.
  */
 export function NotaGrupo({
   medida,
@@ -18,7 +18,9 @@ export function NotaGrupo({
 }) {
   if (!medida && !porcao && !pedidoMinimo) return null;
   return (
-    <p className={`flex flex-wrap gap-x-5 gap-y-1 text-apoio font-semibold text-(--texto-apoio) ${className}`}>
+    <p
+      className={`flex w-fit flex-wrap items-center gap-x-4 gap-y-1 rounded-nota bg-realce px-3.5 ring-1 ring-divisor/70 ring-inset py-2 text-apoio font-semibold text-tinta ${className}`}
+    >
       {medida && <Medida medida={medida} />}
       {porcao && <span>{porcao}</span>}
       {pedidoMinimo && <span>{textoMinimo(pedidoMinimo)}</span>}

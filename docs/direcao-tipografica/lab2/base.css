@@ -1,0 +1,26 @@
+/* Laboratório de direção de arte (não faz parte do site). Cores e contexto copiados dos tokens do cardápio. */
+:root {
+  --creme: #fff4c7; --chocolate: #52352f; --espresso: #49362f; --rosa-argila: #b97874; --rosa-antigo: #ab898c;
+  --figo: #66705a; --dourado: #dec58d; --leite: #fffae6; --nata: #fffdf6; --baunilha: #f7ebc9; --linha: #e6d7b4;
+  --cacau: #75605a; --rosa-profundo: #8e4f4c;
+  --margem: clamp(1.25rem, 0.4rem + 3.6vw, 4rem);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--creme); color: var(--espresso); font-family: Figtree, system-ui, sans-serif; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.moldura { width: 100%; max-width: calc(80rem + 2 * var(--margem)); margin-inline: auto; padding-inline: var(--margem); }
+h1 { margin: 0; font-weight: inherit; }
+svg { display: block; overflow: visible; }
+
+/* contexto real do cardápio abaixo do topo */
+.abas { margin: 40px auto 0; width: fit-content; display: flex; gap: 2px; padding: 4px; border-radius: 999px;
+  background: linear-gradient(180deg, rgb(255 244 199 / .14), rgb(255 244 199 / .02) 55%), rgb(82 53 47 / .82);
+  border: 1px solid rgb(255 244 199 / .28); box-shadow: inset 0 1px 0 rgb(255 244 199 / .3), 0 10px 30px -12px rgb(73 54 47 / .55); }
+.abas span { height: 48px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 999px; font: 600 16px Figtree, sans-serif; color: rgb(255 244 199 / .85); }
+.abas span:first-child { background: rgb(58 40 35 / .9); color: var(--creme); }
+@media (min-width: 640px) { .abas span { padding: 0 20px; } }
+.categoria { margin-top: 32px; border-radius: 1.5rem; background: var(--rosa-profundo); color: var(--creme); padding: 16px 20px;
+  font: 800 clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem)/1.05 Archivo, sans-serif; letter-spacing: -.02em; }
+.cartoes { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (min-width: 1024px) { .cartoes { grid-template-columns: repeat(4, 1fr); gap: 16px; } }
+.cartoes div { aspect-ratio: 1 / 1.25; border-radius: 1.75rem; background: var(--nata); box-shadow: 0 12px 28px -18px rgb(73 54 47 / .32), 0 0 0 1px rgb(230 215 180 / .6); }

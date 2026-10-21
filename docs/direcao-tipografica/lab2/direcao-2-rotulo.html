@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direção 2: Rótulo empilhado</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Figtree:wght@400..700&display=block">
+<link rel="stylesheet" href="base.css">
+<!--
+  DIREÇÃO 2 · RÓTULO EMPILHADO
+  Lettering original de traço pesado e condensado, com curvas em "estádio" (retas que viram meio-círculo),
+  como letreiro pintado de caixa de doces. O A vira um arco de vitrine (sem bico), nas duas ocorrências.
+  A palavra é dividida pela sílaba, CAR / DÁPIO, em bloco justificado: o monograma ocupa o fim da
+  primeira linha, na mesma altura das letras, e o acento dourado fica entre as linhas, encaixado
+  sob o A de cima. Superfície chocolate com dourado (combinação principal da marca) e moldura fina.
+  Grade: altura das maiúsculas = 100, traço 22, entrelinha 40.
+-->
+<style>
+  .topo { padding-top: max(16px, env(safe-area-inset-top)); }
+  .rotulo { position: relative; border-radius: 2rem; background: var(--chocolate); padding: clamp(30px, 8vw, 64px) 20px clamp(26px, 7vw, 56px);
+    box-shadow: inset 0 1px 0 rgb(255 244 199 / .16), 0 18px 40px -24px rgb(73 54 47 / .6); }
+  .rotulo::before { content: ""; position: absolute; inset: 8px; border-radius: 1.55rem; border: 1px solid rgb(222 197 141 / .45); pointer-events: none; }
+  .bloco { width: min(100%, 300px); margin-inline: auto; }
+  .bloco .traco { fill: none; stroke: var(--creme); stroke-width: 22; stroke-linecap: butt; stroke-linejoin: round; }
+  .bloco .acento { fill: var(--dourado); }
+  .vertical { display: none; }
+  @media (min-width: 1024px) {
+    .topo { padding-top: 24px; }
+    .rotulo { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 56px 64px; }
+    .bloco { width: 340px; grid-column: 2; }
+    .vertical { display: block; grid-column: 3; justify-self: start; margin-left: 36px; writing-mode: vertical-rl; rotate: 180deg;
+      font: 600 13px/1 Figtree, sans-serif; letter-spacing: .32em; text-transform: uppercase; color: var(--dourado); }
+  }
+</style>
+</head>
+<body>
+<header class="topo moldura">
+  <div class="rotulo">
+    <h1 class="bloco">
+      <span class="sr">Doce de Mãe — Cardápio</span>
+      <svg viewBox="0 0 272 240" aria-hidden="true">
+        <defs><clipPath id="linha1"><rect x="-20" y="-20" width="320" height="120"/></clipPath><clipPath id="linha2"><rect x="-20" y="120" width="320" height="120"/></clipPath></defs>
+        <g class="traco">
+          <g clip-path="url(#linha1)">
+          <!-- linha 1: C A R -->
+          <path d="M45 40V28A17 17 0 0 0 11 28V72A17 17 0 0 0 45 72V60"/>
+          <g transform="translate(60 0)"><path d="M11 100V28A17 17 0 0 1 45 28V100M11 58H45"/></g>
+          <g transform="translate(120 0)"><path d="M11 100V11H30A19 19 0 0 1 30 49H11M29 49 48 100"/></g>
+          </g>
+          <!-- linha 2: D Á P I O -->
+          <g transform="translate(7 140)">
+            <path d="M11 11H28A17 17 0 0 1 45 28V72A17 17 0 0 1 28 89H11Z"/>
+            <g transform="translate(60 0)"><path d="M11 100V28A17 17 0 0 1 45 28V100M11 58H45"/></g>
+            <g transform="translate(120 0)"><path d="M11 100V11H30A19 19 0 0 1 30 49H11"/></g>
+            <g transform="translate(176 0)"><path d="M11 0V100"/></g>
+            <g transform="translate(202 0)"><path d="M11 28A17 17 0 0 1 45 28V72A17 17 0 0 1 11 72Z"/></g>
+          </g>
+        </g>
+        <!-- acento do Á: cunha dourada entre as linhas -->
+        <rect class="acento" x="-7" y="-15" width="14" height="30" rx="7" transform="translate(98 121) rotate(38)"/>
+        <!-- monograma original no fim da linha 1, na altura das maiúsculas -->
+        <image href="../../../public/brand/monograma-dourado.png" x="189" y="0" width="81" height="100"/>
+      </svg>
+    </h1>
+    <span class="vertical" aria-hidden="true">Doce de Mãe</span>
+  </div>
+</header>
+<main class="moldura">
+  <div class="abas"><span>Docinhos</span><span>Brownies</span><span>Palha</span><span>Copo</span></div>
+  <div class="categoria">Docinhos gourmet</div>
+  <div class="cartoes"><div></div><div></div><div></div><div></div></div>
+</main>
+</body>
+</html>

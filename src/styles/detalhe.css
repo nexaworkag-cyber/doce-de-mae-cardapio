@@ -14,9 +14,9 @@
   max-height: min(92dvh, calc(100dvh - 2.5rem));
   padding: 0;
   border: 0;
-  border-radius: var(--radius-folha) var(--radius-folha) 0 0;
-  background: var(--color-leite);
-  color: var(--color-espresso);
+  border-radius: var(--radius-painel) var(--radius-painel) 0 0;
+  background: var(--color-fundo);
+  color: var(--color-tinta);
   box-shadow: var(--shadow-folha);
 }
 
@@ -80,8 +80,8 @@
   position: sticky;
   bottom: 0;
   padding: 0.75rem var(--margem) max(0.75rem, env(safe-area-inset-bottom));
-  background: var(--color-leite);
-  border-top: 1px solid var(--color-linha);
+  background: var(--color-fundo);
+  border-top: 1px solid var(--color-divisor);
 }
 
 @media (min-width: 768px) {
@@ -91,7 +91,7 @@
     width: min(62rem, calc(100vw - 4rem));
     max-height: min(42rem, calc(100dvh - 4rem));
     height: min(42rem, calc(100dvh - 4rem));
-    border-radius: var(--radius-folha);
+    border-radius: var(--radius-painel);
     box-shadow: 0 40px 80px -30px rgb(41 28 24 / 0.6);
   }
   .detalhe[open] {

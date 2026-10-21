@@ -104,7 +104,12 @@ export const CARDAPIO: readonly Categoria[] = [
               "Romeu e Julieta",
               "Ninho com Nutella",
             ],
-            foto: null,
+            foto: {
+              src: "/fotos/cento-tradicionais.webp",
+              alt: "Bandeja de docinhos tradicionais: brigadeiros com granulado, docinhos com açúcar e doce de leite, e docinhos brancos com espiral de chocolate",
+              largura: 1265,
+              altura: 1244,
+            },
             tom: "rosa-argila",
           },
           {
@@ -124,7 +129,12 @@ export const CARDAPIO: readonly Categoria[] = [
               "Coco Queimado",
               "Coco com Geléia de Maracujá",
             ],
-            foto: null,
+            foto: {
+              src: "/fotos/cento-especiais.webp",
+              alt: "Quatro fotos de docinhos especiais: com biscoito Oreo, de coco com geleia de maracujá, com crocante de avelã e com wafer de chocolate",
+              largura: 1254,
+              altura: 1254,
+            },
             tom: "dourado",
           },
           {
@@ -143,7 +153,13 @@ export const CARDAPIO: readonly Categoria[] = [
               "Morango com Chocolate",
               "Brigadeiro com Bolo de Cenoura",
             ],
-            foto: null,
+            foto: {
+              // Nome com versão: o otimizador de imagens do Next guarda cache por URL.
+              src: "/fotos/cento-recheado-2.webp",
+              alt: "Três fotos de docinhos recheados abertos: morango inteiro envolto em chocolate granulado, recheio cremoso coberto de coco e recheio de chocolate com crocante",
+              largura: 1254,
+              altura: 1254,
+            },
             tom: "figo",
           },
         ],
@@ -167,7 +183,12 @@ export const CARDAPIO: readonly Categoria[] = [
             precoCentavos: 700,
             medida: "5×5",
             pedidoMinimo: 30,
-            foto: null,
+            foto: {
+              src: "/fotos/brownie-recheado.webp",
+              alt: "Brownies em forminhas azuis, cada um com um confeito de creme branco por cima",
+              largura: 1254,
+              altura: 1254,
+            },
             tom: "chocolate",
           },
           {
@@ -177,7 +198,12 @@ export const CARDAPIO: readonly Categoria[] = [
             precoCentavos: 300,
             medida: "3×3",
             pedidoMinimo: 50,
-            foto: null,
+            foto: {
+              src: "/fotos/brownie-mini.webp",
+              alt: "Caixa com brownies em forminhas brancas de papel, com a casquinha brilhante e craquelada por cima",
+              largura: 1254,
+              altura: 1254,
+            },
             tom: "rosa-antigo",
           },
         ],
@@ -202,7 +228,12 @@ export const CARDAPIO: readonly Categoria[] = [
             precoCentavos: 400,
             medida: "5×5",
             descricao: "Massa chocolate, biscoito maisena envolto no ninho",
-            foto: null,
+            foto: {
+              src: "/fotos/palha-tradicional.webp",
+              alt: "Três fotos de palha italiana: quadrados cobertos de leite em pó em forminhas azuis, embalados com fita laranja numa cesta e embalados com fita marrom",
+              largura: 1254,
+              altura: 1254,
+            },
             tom: "dourado",
           },
           {
@@ -212,7 +243,13 @@ export const CARDAPIO: readonly Categoria[] = [
             precoCentavos: 500,
             medida: "5×5",
             descricao: "Massa ninho com biscoito oreo envolto no leite ninho",
-            foto: null,
+            foto: {
+              // Nome com versão: o otimizador de imagens do Next guarda cache por URL.
+              src: "/fotos/palha-oreo-4.webp",
+              alt: "Duas fotos de palha italiana de Oreo com um biscoito por cima: embaladas com fita laranja e servidas num prato",
+              largura: 1254,
+              altura: 1254,
+            },
             tom: "baunilha",
           },
         ],
@@ -228,7 +265,12 @@ export const CARDAPIO: readonly Categoria[] = [
             nomeCompleto: "Mini palha tradicional 3×3",
             precoCentavos: 250,
             medida: "3×3",
-            foto: null,
+            foto: {
+              src: "/fotos/mini-palha-tradicional.webp",
+              alt: "Duas fotos de mini palhas italianas em forminhas verdes, enfileiradas numa bandeja de inox",
+              largura: 1536,
+              altura: 1024,
+            },
             tom: "rosa-argila",
           },
           {
@@ -237,7 +279,12 @@ export const CARDAPIO: readonly Categoria[] = [
             nomeCompleto: "Mini palha Oreo 3×3",
             precoCentavos: 300,
             medida: "3×3",
-            foto: null,
+            foto: {
+              src: "/fotos/mini-palha-oreo.webp",
+              alt: "Mini palhas italianas claras, cobertas de açúcar cristal e raspas verdes, enfileiradas em forminhas transparentes",
+              largura: 1079,
+              altura: 1457,
+            },
             tom: "rosa-antigo",
           },
         ],
@@ -261,7 +308,12 @@ export const CARDAPIO: readonly Categoria[] = [
             nomeCompleto: "Copo da felicidade Brownie",
             precoCentavos: 1200,
             opcoes: ["Ninho", "Brigadeiro", "Doce de Leite"],
-            foto: null,
+            foto: {
+              src: "/fotos/copo-brownie.webp",
+              alt: "Duas fotos de copos da felicidade com camadas de brownie e creme claro, em copos transparentes com tampa",
+              largura: 1254,
+              altura: 1254,
+            },
             tom: "dourado",
           },
           {

@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Topo do cardápio: propostas</title>
+<!--
+  Laboratório de direção de arte do bloco "Cardápio". Não faz parte do site.
+  Fontes de display carregadas dos arquivos completos do repositório google/fonts (OFL),
+  porque o Google Fonts remove os recursos OpenType extras (ver fontes.json × fontes-completas.json).
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Figtree:wght@400..700&display=block">
+<style>
+  @font-face { font-family: "Fraunces"; src: url("https://raw.githubusercontent.com/google/fonts/main/ofl/fraunces/Fraunces%5BSOFT,WONK,opsz,wght%5D.ttf"); font-weight: 100 900; font-style: normal; font-display: block; }
+  @font-face { font-family: "Fraunces"; src: url("https://raw.githubusercontent.com/google/fonts/main/ofl/fraunces/Fraunces-Italic%5BSOFT,WONK,opsz,wght%5D.ttf"); font-weight: 100 900; font-style: italic; font-display: block; }
+  @font-face { font-family: "Caprasimo"; src: url("https://raw.githubusercontent.com/google/fonts/main/ofl/caprasimo/Caprasimo-Regular.ttf"); font-display: block; }
+  @font-face { font-family: "Ballet"; src: url("https://raw.githubusercontent.com/google/fonts/main/ofl/ballet/Ballet%5Bopsz%5D.ttf"); font-display: block; }
+  @font-face { font-family: "Cormorant"; src: url("https://raw.githubusercontent.com/google/fonts/main/ofl/cormorant/Cormorant%5Bwght%5D.ttf"); font-weight: 300 700; font-display: block; }
+
+  :root {
+    --creme: #fff4c7; --chocolate: #52352f; --espresso: #49362f; --rosa-argila: #b97874; --rosa-antigo: #ab898c;
+    --figo: #66705a; --dourado: #dec58d; --leite: #fffae6; --nata: #fffdf6; --baunilha: #f7ebc9; --linha: #e6d7b4;
+    --cacau: #75605a; --rosa-profundo: #8e4f4c;
+    --margem: clamp(1.25rem, 0.4rem + 3.6vw, 4rem);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--creme); color: var(--espresso); font-family: Figtree, system-ui, sans-serif; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  img { display: block; }
+
+  /* ---------- moldura do laboratório ---------- */
+  .prancheta { padding: 28px var(--margem) 36px; max-width: calc(80rem + 2 * var(--margem)); margin: 0 auto; }
+  .rotulo-lab { font: 600 13px/1.3 Figtree, sans-serif; color: var(--cacau); margin: 0 0 14px; }
+  .rotulo-lab b { color: var(--espresso); }
+  .divisoria { height: 1px; background: var(--linha); margin: 0 var(--margem); }
+
+  /* contexto real abaixo do topo: abas de vidro + início da primeira categoria */
+  .abas { margin: 28px auto 0; width: fit-content; display: flex; gap: 2px; padding: 4px; border-radius: 999px;
+    background: linear-gradient(180deg, rgb(255 244 199 / .14), rgb(255 244 199 / .02) 55%), rgb(82 53 47 / .82);
+    border: 1px solid rgb(255 244 199 / .28); box-shadow: inset 0 1px 0 rgb(255 244 199 / .3), 0 10px 30px -12px rgb(73 54 47 / .55); }
+  .abas span { height: 48px; display: inline-flex; align-items: center; padding: 0 12px; border-radius: 999px; font: 600 16px Figtree, sans-serif; color: rgb(255 244 199 / .85); }
+  .abas span:first-child { background: rgb(58 40 35 / .9); color: var(--creme); }
+  .categoria { margin-top: 32px; border-radius: 1.5rem; background: var(--rosa-profundo); color: var(--creme); padding: 16px 20px;
+    font: 800 clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem)/1.05 Archivo, sans-serif; letter-spacing: -.02em; }
+
+  /* vidro claro atual (para A) */
+  .vidro-claro {
+    background: linear-gradient(180deg, rgb(255 255 255 / .6), rgb(255 253 246 / .2) 60%), rgb(255 250 230 / .4);
+    border: 1px solid rgb(255 255 255 / .75);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / .95), inset 0 -1px 0 rgb(230 215 180 / .7), 0 18px 40px -22px rgb(73 54 47 / .45), 0 2px 6px rgb(73 54 47 / .06);
+  }
+
+  /* =========================================================
+     A · EDITORIAL LUXURY
+     Uma família só (Fraunces) e o contraste vem do tamanho óptico: título em itálico leve no opsz 144,
+     assinatura em romano no opsz 14. Alinhado à esquerda; o fio leva o olho até o monograma, que vira selo.
+     ========================================================= */
+  .a { position: relative; container-type: inline-size; border-radius: 2rem; padding: clamp(28px, 6cqi, 64px) clamp(26px, 6cqi, 72px) clamp(26px, 5cqi, 56px); }
+  .a::before { content: ""; position: absolute; inset: 9px; border-radius: 1.5rem; border: 1px solid rgb(73 54 47 / .16); pointer-events: none; }
+  .a-titulo { margin: 0; font-weight: inherit; }
+  .a-cardapio {
+    display: block; font-family: Fraunces, serif; font-style: italic; color: var(--chocolate);
+    font-variation-settings: "opsz" 144, "wght" 330, "SOFT" 50, "WONK" 1;
+    font-size: min(31.5cqi, 17rem); line-height: .92; letter-spacing: -.025em; margin-left: -.04em;
+  }
+  .a-linha { display: flex; align-items: center; gap: 14px; margin-top: clamp(14px, 3cqi, 26px); }
+  .a-fio { flex: 1; height: 1px; background: rgb(73 54 47 / .4); }
+  .a-selo { width: auto; height: clamp(34px, 9cqi, 64px); }
+  .a-marca {
+    flex: none; font-family: Fraunces, serif; color: var(--espresso);
+    font-variation-settings: "opsz" 14, "wght" 450, "SOFT" 0, "WONK" 0; font-size: clamp(17px, 4.6cqi, 26px); letter-spacing: .01em;
+  }
+
+  /* =========================================================
+     B · EXPRESSIVE RETRO
+     Rótulo de embalagem: listras rosa como papel de confeitaria, selo redondo que "estoura" a borda,
+     título Caprasimo em chocolate com sombra creme deslocada (impressão retrô) e o acento do "á"
+     redesenhado como uma gota de calda (SVG próprio). A fonte não tem recursos OpenType: o detalhe é desenhado.
+     ========================================================= */
+  .b { position: relative; container-type: inline-size; margin-top: 70px; border-radius: 2rem; padding: 70px 20px 34px; text-align: center;
+    background: repeating-linear-gradient(90deg, var(--rosa-argila) 0 16px, #c48a85 16px 32px);
+    box-shadow: inset 0 0 0 6px rgb(255 244 199 / .55), 0 18px 40px -24px rgb(73 54 47 / .55); }
+  .b-selo { position: absolute; left: 50%; top: 0; translate: -50% -50%; width: 112px; height: 112px; }
+  .b-selo svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .b-selo img { position: absolute; left: 50%; top: 50%; translate: -50% -52%; height: 46px; width: auto; }
+  .b-titulo { margin: 0; font-weight: inherit; }
+  .b-cardapio { display: inline-block; font-family: Caprasimo, serif; color: var(--chocolate); font-size: min(21cqi, 9.5rem); line-height: 1;
+    letter-spacing: -.01em; text-shadow: .05em .05em 0 var(--creme); }
+  .b-a { position: relative; display: inline-block; }
+  .b-gota { position: absolute; left: 50%; top: -.02em; width: .16em; height: auto; translate: -40% 0; rotate: 30deg;
+    filter: drop-shadow(.05em .05em 0 var(--creme)); }
+  .b-marca { margin-top: 12px; font: 600 15px/1.2 Figtree, sans-serif; color: var(--chocolate); }
+
+  /* =========================================================
+     C · ASSINATURA (interpretação própria; o briefing chegou cortado depois da B)
+     Vidro marrom do Figma, monograma dourado (combinação principal da marca),
+     "Cardápio" em script Ballet (opsz 72, ss01) e a marca assinando em versaletes verdadeiros (Cormorant smcp).
+     ========================================================= */
+  .c { position: relative; container-type: inline-size; border-radius: 2rem; padding: clamp(26px, 6cqi, 56px) clamp(18px, 5cqi, 64px) clamp(26px, 6cqi, 52px); text-align: center; overflow: hidden;
+    background: linear-gradient(180deg, rgb(255 244 199 / .12), rgb(255 244 199 / .02) 55%), rgb(82 53 47 / .94);
+    border: 1px solid rgb(255 244 199 / .28);
+    box-shadow: inset 0 1px 0 rgb(255 244 199 / .3), inset 0 -1px 0 rgb(0 0 0 / .12), 0 18px 40px -20px rgb(73 54 47 / .6); }
+  .c-selo { height: clamp(42px, 11cqi, 72px); width: auto; margin: 0 auto; }
+  .c-titulo { margin: 0; font-weight: inherit; }
+  .c-cardapio { display: block; font-family: Ballet, cursive; font-variation-settings: "opsz" 72; font-feature-settings: "ss01"; color: var(--creme);
+    font-size: min(22cqi, 10rem); line-height: 1.25; margin-top: -.05em; }
+  .c-assinatura { display: inline-block; text-align: right; }
+  .c-marca { display: block; margin-top: -.15em; padding-right: .2em; font-family: Cormorant, serif; font-weight: 500; font-feature-settings: "smcp";
+    color: var(--dourado); font-size: clamp(19px, 5.4cqi, 30px); letter-spacing: .06em; }
+</style>
+</head>
+<body>
+
+<section class="prancheta" id="atual">
+  <p class="rotulo-lab"><b>Atual</b> · Archivo 900, centralizado, monograma em marca-d'água</p>
+  <div class="vidro-claro" style="position:relative;container-type:inline-size;border-radius:2rem;padding:56px 24px;display:flex;justify-content:center;align-items:center;overflow:hidden;isolation:isolate">
+    <img src="../../public/brand/monograma-chocolate.png" alt="" style="position:absolute;left:50%;top:50%;translate:-50% -50%;height:92%;opacity:.09;z-index:-1">
+    <span style="font-family:Archivo;font-weight:900;font-stretch:88%;text-transform:uppercase;letter-spacing:-.045em;line-height:.86;font-size:min(20cqi,9rem);color:var(--chocolate)">Cardápio</span>
+  </div>
+  <div class="abas"><span>Docinhos</span><span>Brownies</span><span>Palha</span><span>Copo</span></div>
+  <div class="categoria">Docinhos gourmet</div>
+</section>
+<div class="divisoria"></div>
+
+<section class="prancheta" id="proposta-a">
+  <p class="rotulo-lab"><b>A · Editorial Luxury</b> · Fraunces itálico (opsz 144, SOFT 50, WONK 1) + Fraunces romano (opsz 14)</p>
+  <header class="a vidro-claro">
+    <h1 class="a-titulo">
+      <span class="sr">Doce de Mãe — Cardápio</span>
+      <span aria-hidden="true">
+        <span class="a-cardapio">Cardápio</span>
+        <span class="a-linha"><span class="a-marca">Doce de Mãe</span><span class="a-fio"></span><img class="a-selo" src="../../public/brand/monograma-chocolate.png" alt=""></span>
+      </span>
+    </h1>
+  </header>
+  <div class="abas"><span>Docinhos</span><span>Brownies</span><span>Palha</span><span>Copo</span></div>
+  <div class="categoria">Docinhos gourmet</div>
+</section>
+<div class="divisoria"></div>
+
+<section class="prancheta" id="proposta-b">
+  <p class="rotulo-lab"><b>B · Expressive Retro</b> · Caprasimo + acento desenhado (gota) + selo com texto em arco</p>
+  <header class="b">
+    <div class="b-selo" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <defs><path id="arco" d="M60,60 m-45,0 a45,45 0 1,1 90,0 a45,45 0 1,1 -90,0"/></defs>
+        <circle cx="60" cy="60" r="58" fill="#fff4c7"/>
+        <circle cx="60" cy="60" r="56" fill="none" stroke="#52352f" stroke-width="1.5"/>
+        <circle cx="60" cy="60" r="34" fill="none" stroke="#52352f" stroke-width="1"/>
+        <text font-family="Figtree" font-weight="700" font-size="10.5" fill="#52352f" letter-spacing="1"><textPath href="#arco" textLength="276" lengthAdjust="spacing">DOCE DE MÃE • DOCE DE MÃE •</textPath></text>
+      </svg>
+      <img src="../../public/brand/monograma-chocolate.png" alt="">
+    </div>
+    <h1 class="b-titulo">
+      <span class="sr">Doce de Mãe — Cardápio</span>
+      <span class="b-cardapio" aria-hidden="true">Card<span class="b-a">a<svg class="b-gota" viewBox="0 0 20 30"><path d="M10 0C10 0 19 13 19 20a9 9 0 0 1-18 0C1 13 10 0 10 0Z" fill="#52352f"/></svg></span>pio</span>
+    </h1>
+  </header>
+  <div class="abas"><span>Docinhos</span><span>Brownies</span><span>Palha</span><span>Copo</span></div>
+  <div class="categoria">Docinhos gourmet</div>
+</section>
+<div class="divisoria"></div>
+
+<section class="prancheta" id="proposta-c">
+  <p class="rotulo-lab"><b>C · Assinatura</b> · Ballet (opsz 72, ss01) + Cormorant versaletes (smcp) · vidro marrom</p>
+  <header class="c">
+    <img class="c-selo" src="../../public/brand/monograma-dourado.png" alt="">
+    <h1 class="c-titulo">
+      <span class="sr">Doce de Mãe — Cardápio</span>
+      <span class="c-assinatura" aria-hidden="true">
+        <span class="c-cardapio">Cardápio</span>
+        <span class="c-marca">Doce de Mãe</span>
+      </span>
+    </h1>
+  </header>
+  <div class="abas"><span>Docinhos</span><span>Brownies</span><span>Palha</span><span>Copo</span></div>
+  <div class="categoria">Docinhos gourmet</div>
+</section>
+
+</body>
+</html>

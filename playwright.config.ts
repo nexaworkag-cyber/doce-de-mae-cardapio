@@ -37,7 +37,7 @@ export default defineConfig({
   },
   projects: [...projetosE2E, projetoCapturas],
   webServer: {
-    command: `npm run build && npm run start -- -p ${PORTA}`,
+    command: `npm run build && node scripts/servir-estatico.mjs ${PORTA}`,
     url: `http://localhost:${PORTA}`,
     reuseExistingServer: !process.env.CI,
     timeout: 240_000,

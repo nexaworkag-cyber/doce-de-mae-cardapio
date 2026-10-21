@@ -48,3 +48,18 @@ next-env.d.ts
 
 # capturas de revisão (regeráveis com npm run capturas)
 /docs/capturas/
+
+# capturas de revisão (pesadas; ficam só na máquina)
+/*.png
+/docs/revisao-premium/*
+!/docs/revisao-premium/PLANO.md
+/docs/direcao-tipografica/capturas/
+/docs/direcao-tipografica/lettering/capturas/
+/test-results/
+/playwright-report/
+# referências de terceiros usadas só para estudo (não publicar)
+/docs/direcao-tipografica/lab2/referencias/
+/docs/direcao-tipografica/lab2/capturas/
+**/.ui-validation/
+/docs/direcao-tipografica/lettering/estudo-5.html
+/docs/direcao-tipografica/lettering/estudo-6.html

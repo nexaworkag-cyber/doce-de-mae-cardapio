@@ -50,21 +50,23 @@ export function AbasCategorias({ itens }: { itens: readonly Item[] }) {
   return (
     <nav
       aria-label="Categorias do cardápio"
-      className="sticky top-0 z-30 border-b border-linha/70 bg-creme/90 backdrop-blur-md"
+      className="sticky top-0 z-30 moldura mt-10 py-2.5 md:mt-12"
     >
-      <div ref={listaRef} className="moldura flex gap-1.5 overflow-x-auto py-3 [scrollbar-width:none] md:justify-center">
+      <div
+        ref={listaRef}
+        className="escuro vidro mx-auto flex w-fit max-w-full gap-0.5 overflow-x-auto rounded-full p-1 sm:gap-1 sm:p-1.5 [scrollbar-width:none]"
+      >
         {itens.map((item) => {
           const atual = ativo === item.id;
           return (
             <a
               key={item.id}
               data-aba={item.id}
-              data-cor={item.id}
               href={`#${item.id}`}
               onClick={(e) => irPara(e, item.id)}
               aria-current={atual ? "true" : undefined}
-              className={`inline-flex h-11 shrink-0 items-center rounded-full px-3.5 text-apoio font-semibold transition-colors duration-200 md:px-5 ${
-                atual ? "bg-(--cat) text-(--cat-texto)" : "bg-nata text-espresso ring-1 ring-linha hover:bg-baunilha"
+              className={`aba inline-flex h-12 shrink-0 items-center rounded-full px-3 text-corpo font-semibold transition-[color,background-color] duration-200 sm:px-4 md:px-5 ${
+                atual ? "vidro-ativo text-tinta" : "text-tinta/80 hover:bg-tinta/10 hover:text-tinta"
               }`}
             >
               <span className="md:hidden">{item.rotuloCurto}</span>

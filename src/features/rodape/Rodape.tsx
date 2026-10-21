@@ -7,15 +7,15 @@ import { Monograma } from "@/components/Monograma";
 export function Rodape() {
   return (
     <footer className="moldura pt-14 pb-[max(2.5rem,env(safe-area-inset-bottom))] md:pt-20">
-      <div className="flex flex-col items-center escuro rounded-[2rem] bg-figo px-6 text-creme py-10 text-center md:py-14">
-        <Monograma cor="creme" sizes="64px" className="h-auto w-11" />
-        <h2 className="mt-4 font-display text-secao font-extrabold tracking-[-0.02em]">{CONTATO.chamada}</h2>
+      <div className="painel escuro flex flex-col items-center px-6 py-10 text-center md:py-14">
+        <Monograma cor="dourado" sizes="64px" className="h-auto w-11" />
+        <h2 className="titulo-secao mt-4">{CONTATO.chamada}</h2>
         {CONTATO.whatsapp && (
           <a
             href={linkWhatsApp()}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex h-14 w-full max-w-sm items-center justify-center gap-2.5 whitespace-nowrap rounded-full bg-creme px-5 text-corpo font-semibold text-espresso shadow-flutuante transition-transform duration-200 active:scale-[0.98]"
+            className="botao-acao mt-6 w-full max-w-sm"
           >
             <Icone nome="whatsapp" className="size-5" />
             Encomendar pelo WhatsApp
@@ -24,7 +24,7 @@ export function Rodape() {
         <ul className="mt-4 flex flex-col items-center gap-1 sm:flex-row sm:gap-6">
           <li>
             <a href={linkTelefone} className="inline-flex min-h-11 items-center gap-2 text-corpo font-semibold tabular-nums">
-              <Icone nome="telefone" className="size-5 text-dourado" />
+              <Icone nome="telefone" className="size-5 text-acabamento" />
               {CONTATO.telefone}
             </a>
           </li>
@@ -35,12 +35,12 @@ export function Rodape() {
               rel="noopener noreferrer"
               className="inline-flex min-h-11 items-center gap-2 text-corpo font-semibold"
             >
-              <Icone nome="instagram" className="size-5 text-dourado" />@{CONTATO.instagram}
+              <Icone nome="instagram" className="size-5 text-acabamento" />@{CONTATO.instagram}
             </a>
           </li>
         </ul>
       </div>
-      <p className="mx-auto mt-6 flex max-w-[52ch] items-start justify-center gap-2 text-center text-legenda text-cacau">
+      <p className="mx-auto mt-6 flex max-w-[52ch] items-start justify-center gap-2 text-center text-legenda text-tinta-suave">
         <Icone nome="camera" className="mt-px size-4 shrink-0" />
         Fotos dos produtos em breve: os quadros com o selo “Foto em breve” são marcadores provisórios.
       </p>

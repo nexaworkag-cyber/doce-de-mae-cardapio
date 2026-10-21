@@ -90,7 +90,7 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
             <button
               type="button"
               onClick={() => onFechar()}
-              className="grid size-11 place-items-center rounded-full bg-leite/95 text-espresso shadow-flutuante transition-transform duration-200 active:scale-95"
+              className="grid size-11 place-items-center rounded-full bg-fundo/95 text-tinta shadow-flutuante transition-transform duration-200 active:scale-95"
               aria-label="Fechar detalhes"
             >
               <Icone nome="fechar" className="size-5" />
@@ -111,8 +111,8 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
             </div>
           </div>
 
-          <div className="detalhe-info [--texto-apoio:var(--color-cacau)]">
-            <p id="detalhe-contexto" className="flex flex-wrap items-center gap-1.5 text-apoio font-medium text-cacau">
+          <div className="detalhe-info">
+            <p id="detalhe-contexto" className="flex flex-wrap items-center gap-1.5 text-apoio font-medium text-tinta-suave">
               {produto.categoria.nome}
               {produto.grupoNome && (
                 <>
@@ -121,13 +121,13 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
                 </>
               )}
             </p>
-            <h2 id="detalhe-titulo" className="mt-1.5 font-display text-[clamp(1.75rem,1.4rem+1.5vw,2.5rem)] leading-[1.05] font-extrabold tracking-[-0.02em]">
+            <h2 id="detalhe-titulo" className="titulo-produto mt-1.5">
               {produto.nome}
             </h2>
-            <Preco centavos={produto.precoCentavos} unidade={produto.unidadePreco} className="mt-5 text-[1.875rem]" />
+            <Preco centavos={produto.precoCentavos} unidade={produto.unidadePreco} className="mt-5 text-preco-lg" />
 
             {especificacoes.length > 0 && (
-              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-apoio font-medium text-cacau" aria-label="Informações do cardápio">
+              <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-apoio font-medium text-tinta-suave" aria-label="Informações do cardápio">
                 {especificacoes.map((item) => (
                   <li key={item.chave}>{item.conteudo}</li>
                 ))}
@@ -139,13 +139,13 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
             {produto.opcoes && <p className="mt-6 text-corpo-lg">{produto.opcoes.join(", ")}</p>}
 
             {produto.sabores && (
-              <ListaSabores sabores={produto.sabores} corPonto="bg-rosa-argila" revelar={false} className="mt-8 border-t border-linha pt-5" />
+              <ListaSabores sabores={produto.sabores} revelar={false} className="mt-8 border-t border-divisor pt-5" />
             )}
 
             {produto.recheios && (
               <p className="mt-6 max-w-[40ch] text-corpo-lg">
                 <span className="font-semibold">Recheios: </span>
-                <span className="text-cacau">{produto.recheios.join(", ")}</span>
+                <span className="text-tinta-suave">{produto.recheios.join(", ")}</span>
               </p>
             )}
           </div>
@@ -156,7 +156,7 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
                 href={linkWhatsApp(produto)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-14 w-full items-center justify-center gap-2.5 rounded-full bg-espresso px-6 text-corpo font-semibold text-creme shadow-flutuante transition-transform duration-200 active:scale-[0.98]"
+                className="botao-acao w-full"
               >
                 <Icone nome="whatsapp" className="size-5" />
                 Encomendar pelo WhatsApp
@@ -164,7 +164,7 @@ export function FolhaDetalhe({ ref, produto, onFechar, onFechado }: Props) {
             ) : (
               <a
                 href={linkTelefone}
-                className="flex h-14 w-full items-center justify-center gap-2.5 rounded-full bg-espresso px-6 text-corpo font-semibold text-creme"
+                className="botao-escuro w-full"
               >
                 <Icone nome="telefone" className="size-5" />
                 Ligar para encomendar

@@ -1,0 +1,158 @@
+{
+  "data": "2026-10-18T03:13:41.907Z",
+  "fonte": "Google Fonts (css2)",
+  "acentosFaltando": {
+    "Fraunces": [],
+    "Caprasimo": [],
+    "Gloock": [],
+    "Instrument Serif": [],
+    "Bodoni Moda": [],
+    "Playfair Display": [],
+    "DM Serif Display": [],
+    "Young Serif": [],
+    "Ballet": [],
+    "Cormorant": [],
+    "Shrikhand": []
+  },
+  "suportado": {
+    "Fraunces": {
+      "recursos": [
+        "liga"
+      ],
+      "eixos": [
+        "SOFT",
+        "WONK",
+        "opsz",
+        "wght"
+      ]
+    },
+    "Fraunces Italic": {
+      "recursos": [
+        "liga"
+      ],
+      "eixos": [
+        "SOFT",
+        "WONK",
+        "opsz",
+        "wght"
+      ]
+    },
+    "Caprasimo": {
+      "recursos": [],
+      "eixos": []
+    },
+    "Gloock": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": []
+    },
+    "Instrument Serif": {
+      "recursos": [
+        "liga"
+      ],
+      "eixos": []
+    },
+    "Instrument Serif Italic": {
+      "recursos": [
+        "liga"
+      ],
+      "eixos": []
+    },
+    "Bodoni Moda": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": [
+        "opsz",
+        "wght"
+      ]
+    },
+    "Bodoni Moda Italic": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": [
+        "opsz",
+        "wght"
+      ]
+    },
+    "Playfair Display": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": [
+        "wght"
+      ]
+    },
+    "Playfair Display Italic": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": [
+        "wght"
+      ]
+    },
+    "DM Serif Display": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": []
+    },
+    "DM Serif Display Italic": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": []
+    },
+    "Young Serif": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": []
+    },
+    "Ballet": {
+      "recursos": [
+        "liga",
+        "frac"
+      ],
+      "eixos": [
+        "opsz"
+      ]
+    },
+    "Cormorant": {
+      "recursos": [
+        "liga",
+        "calt",
+        "frac"
+      ],
+      "eixos": [
+        "wght"
+      ]
+    },
+    "Cormorant Italic": {
+      "recursos": [
+        "liga",
+        "calt",
+        "frac"
+      ],
+      "eixos": [
+        "wght"
+      ]
+    },
+    "Shrikhand": {
+      "recursos": [
+        "liga"
+      ],
+      "eixos": []
+    }
+  }
+}

@@ -1,14 +1,18 @@
 /*
- * Tokens do Cardápio Doce de Mãe.
- * Cores: oficiais da logo (docs/design do projeto da marca, cores.json) + tons de apoio aprovados no
- * design system da marca. A paleta padrão do Tailwind foi removida: só estas cores existem.
- * Detalhes e combinações permitidas (WCAG): docs/DESIGN-SYSTEM.md.
+ * Design system do Cardápio Doce de Mãe — tokens em três camadas:
+ *   1. Primitivas  → os valores crus (cores oficiais da logo + apoio). Só este arquivo as usa.
+ *   2. Semânticas  → o papel de cada cor/tamanho (fundo, tinta, divisor, destaque…). É o que os componentes usam.
+ *   3. Componentes → receitas prontas (titulo-secao, cartao, botao-acao…) para títulos, categorias e cartões
+ *                    saírem sempre iguais.
+ * A paleta padrão do Tailwind foi removida: só estas cores existem.
+ * Regras de uso, hierarquia e contrastes (WCAG): docs/DESIGN-SYSTEM.md.
  */
 
+/* ───────────── 1. Primitivas ───────────── */
 @theme {
   --color-*: initial;
 
-  /* Oficiais */
+  /* Oficiais da logo */
   --color-creme: #fff4c7;
   --color-chocolate: #52352f;
   --color-espresso: #49362f;
@@ -24,34 +28,54 @@
   --color-linha: #e6d7b4;
   --color-cacau: #75605a;
   --color-rosa-profundo: #8e4f4c;
+  --color-verde-whatsapp: #25d366;
+  --color-verde-whatsapp-escuro: #1fbf5b;
+
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  /* Tipografia: Archivo nos títulos (e no nome por extenso); Figtree em todo o resto. */
+  /* Tipografia: Archivo nos títulos; Figtree em todo o resto (next/font, ver layout.tsx). */
   --font-*: initial;
 
-  /* Escala fluida, desenhada primeiro para 375 px */
+  /* Escala de texto, desenhada primeiro para 375 px (valores fluidos crescem até ~1280 px) */
   --text-*: initial;
-  --text-secao: clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem);
+  --text-secao: clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem); /* 26 → 40 */
   --text-secao--line-height: 1.05;
-  --text-produto: clamp(1.625rem, 1.3rem + 1.2vw, 2.375rem);
-  --text-produto--line-height: 1.02;
-  --text-preco: clamp(1.375rem, 1.2rem + 0.6vw, 1.75rem);
+  --text-produto: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem); /* 28 → 40 */
+  --text-produto--line-height: 1.05;
+  --text-preco-lg: 1.875rem; /* 30 */
+  --text-preco-lg--line-height: 1;
+  --text-preco: 1.25rem; /* 20 — mínimo testado para preço */
   --text-preco--line-height: 1;
-  --text-corpo-lg: 1.125rem;
+  --text-corpo-lg: 1.125rem; /* 18 */
   --text-corpo-lg--line-height: 1.5;
-  --text-corpo: 1rem;
+  --text-cartao: clamp(1rem, 0.95rem + 0.16vw, 1.0625rem); /* 16 → 17 */
+  --text-cartao--line-height: 1.2;
+  --text-corpo: 1rem; /* 16 */
   --text-corpo--line-height: 1.55;
-  --text-apoio: 0.9375rem;
+  --text-apoio: 0.9375rem; /* 15 */
   --text-apoio--line-height: 1.45;
-  --text-legenda: 0.8125rem;
+  --text-legenda: 0.8125rem; /* 13 */
   --text-legenda--line-height: 1.35;
 
-  --radius-prancha: 1.75rem;
-  --radius-folha: 2rem;
+  /* Cantos: quanto maior a peça, maior o raio */
+  --radius-nota: 0.75rem; /* 12 · faixas e chips */
+  --radius-cartao: 1.75rem; /* 28 · cartões e quadro de sabores */
+  --radius-painel: 2rem; /* 32 · topo, rodapé e folha de detalhe */
+  /* Concêntrico: canto interno = canto externo − respiro do cartão */
+  --radius-foto: calc(var(--radius-cartao) - var(--spacing-respiro));
 
-  --shadow-flutuante: 0 14px 34px -14px rgb(73 54 47 / 0.55), 0 2px 8px rgb(73 54 47 / 0.18);
-  --shadow-cartao: 0 12px 28px -18px rgb(73 54 47 / 0.32), 0 1px 3px rgb(73 54 47 / 0.07);
+  /* Ritmo vertical (proximidade: quanto mais relacionado, mais perto) */
+  --spacing-respiro: 0.5rem; /* 8 · borda do cartão até a foto */
+  --spacing-titulo: 1.25rem; /* 20 · título da categoria até o primeiro grupo */
+  --spacing-grupo: 2rem; /* 32 · entre grupos da mesma categoria */
+  --spacing-secao: clamp(3rem, 2.5rem + 1.6vw, 4rem); /* 48 → 64 · entre categorias */
+
+  /* Elevação: 1 = no papel (cartões, painéis) · 2 = flutua (abas, botões, cartão em foco) · 3 = folha */
+  --shadow-cartao:
+    0 1px 1px rgb(73 54 47 / 0.05), 0 3px 6px -2px rgb(73 54 47 / 0.06), 0 16px 30px -20px rgb(73 54 47 / 0.36);
+  --shadow-flutuante:
+    0 1px 2px rgb(73 54 47 / 0.08), 0 6px 12px -4px rgb(73 54 47 / 0.14), 0 22px 40px -18px rgb(73 54 47 / 0.48);
   --shadow-folha: 0 -18px 40px -24px rgb(41 28 24 / 0.45);
 
   --ease-editorial: cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -64,10 +88,51 @@
   --font-sans: var(--font-figtree), system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
+/* ───────────── 2. Semânticas ─────────────
+ * Não-inline de propósito: as utilidades leem a variável (bg-fundo → var(--color-fundo)),
+ * então a classe .escuro pode redefinir o papel e tudo dentro dela se ajusta sozinho. */
+@theme {
+  /* Superfícies, da mais clara para a mais escura */
+  --color-superficie: var(--color-nata); /* cartões, quadro de sabores */
+  --color-fundo: var(--color-leite); /* página, folha de detalhe */
+  --color-realce: var(--color-baunilha); /* faixa de regras do grupo, marcador sem foto */
+  --color-painel: var(--color-chocolate); /* topo, rodapé (sempre com .escuro) */
+
+  /* Texto e linhas */
+  --color-tinta: var(--color-espresso); /* texto principal e títulos */
+  --color-tinta-suave: var(--color-cacau); /* informações, descrições, contagens */
+  --color-sobre-painel: var(--color-creme); /* texto de botão escuro */
+  --color-divisor: var(--color-linha); /* fio sob o título, contorno do cartão */
+
+  /* Acentos (pouco, para valer alguma coisa) */
+  --color-destaque: var(--color-rosa-profundo); /* elemento interativo em texto, anel de foco */
+  --color-marcador: var(--color-rosa-argila); /* pontos dos sabores, seleção de texto */
+  --color-acabamento: var(--color-dourado); /* monograma e ícones sobre o painel */
+  --color-ponto: rgb(117 96 90 / 0.5); /* pontilhado de cardápio (decorativo) */
+
+  /* Ação: só o botão de encomendar */
+  --color-acao: var(--color-verde-whatsapp);
+  --color-acao-pressionada: var(--color-verde-whatsapp-escuro);
+  --color-sobre-acao: var(--color-espresso); /* 5,72:1 sobre o verde */
+}
+
+/* Contexto escuro (painéis chocolate e vidro): os mesmos papéis, invertidos.
+   Quem usa text-tinta, text-tinta-suave, border-divisor ou o anel de foco não precisa saber onde está. */
+@layer base {
+  .escuro {
+    --color-tinta: var(--color-creme);
+    --color-tinta-suave: rgb(255 244 199 / 0.82);
+    --color-divisor: rgb(255 244 199 / 0.22);
+    --color-destaque: var(--color-dourado);
+    --color-ponto: rgb(222 197 141 / 0.7);
+    color: var(--color-tinta);
+  }
+}
+
 :root {
   /* Margem lateral: 20 px no celular, cresce com a tela */
   --margem: clamp(1.25rem, 0.4rem + 3.6vw, 4rem);
-  --largura-max: 80rem;
+  --largura-max: 62rem;
 
   /* Movimento */
   --motion-fast: 200ms;
@@ -75,13 +140,113 @@
   --motion-hero: 900ms;
 }
 
-/* Nome por extenso da marca (wordmark): Archivo 900, expandida, caixa alta. */
-@utility display {
+/* ───────────── 3. Componentes ───────────── */
+
+/* Hierarquia de títulos: uma receita por nível. A cor vem do contexto (tinta). */
+/* h2 — nome da categoria e chamada do rodapé */
+@utility titulo-secao {
   font-family: var(--font-display);
-  font-weight: 900;
-  font-stretch: 125%;
-  text-transform: uppercase;
-  letter-spacing: -0.012em;
+  font-size: var(--text-secao);
+  line-height: var(--text-secao--line-height);
+  font-weight: 800;
+  font-stretch: 105%;
+  letter-spacing: -0.025em;
+}
+/* h2 da folha de detalhe — nome do produto aberto */
+@utility titulo-produto {
+  font-family: var(--font-display);
+  font-size: var(--text-produto);
+  line-height: var(--text-produto--line-height);
+  font-weight: 800;
+  font-stretch: 105%;
+  letter-spacing: -0.025em;
+}
+/* h3 — subgrupo de uma categoria ("Mini palha") e blocos ("Sabores") */
+@utility titulo-grupo {
+  font-size: var(--text-corpo-lg);
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+/* h3 — nome do produto no cartão */
+@utility titulo-cartao {
+  font-size: var(--text-cartao);
+  line-height: var(--text-cartao--line-height);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Assinatura do cardápio: o pontilhado das cartas impressas (pontos de 1,8 px a cada 6 px).
+   Ecoa os pontos dos sabores e o ponto da aba ativa. Decorativo: nunca carrega informação.
+   Fio sob o título: ocupa o mesmo 1 px da antiga borda (pb + 1px), então nada sai do lugar. */
+@utility fio-pontilhado {
+  padding-bottom: calc(0.75rem + 1px);
+  background: radial-gradient(circle, var(--color-ponto) 0.9px, transparent 1.25px) 0 100% / 6px 3px repeat-x;
+}
+
+/* Superfície de cartão (nível 1): cartões de produto e quadro de sabores */
+@utility cartao {
+  border-radius: var(--radius-cartao);
+  background-color: var(--color-superficie);
+  @apply shadow-cartao ring-1 ring-divisor/60;
+}
+
+/* Painel escuro: topo e rodapé. Use junto com a classe .escuro. */
+@utility painel {
+  border-radius: var(--radius-painel);
+  background-color: var(--color-painel);
+  @apply shadow-cartao;
+}
+
+/* Botões grandes (56 px) da folha e do rodapé */
+@utility botao {
+  display: inline-flex;
+  height: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  border-radius: 999px;
+  padding-inline: 1.5rem;
+  white-space: nowrap;
+  font-size: var(--text-corpo);
+  font-weight: 600;
+  transition: scale var(--motion-fast), background-color var(--motion-fast);
+  &:active {
+    scale: 0.98;
+  }
+}
+/* Ação principal: encomendar pelo WhatsApp */
+@utility botao-acao {
+  @apply botao bg-acao text-sobre-acao shadow-flutuante hover:bg-acao-pressionada active:bg-acao-pressionada;
+}
+/* Ação alternativa: ligar */
+@utility botao-escuro {
+  @apply botao bg-tinta text-sobre-painel;
+}
+
+/* Vidro chocolate (como a navegação do Figma): marrom translúcido, desfoque do que está atrás,
+   borda clara fina e reflexo suave no alto. */
+@utility vidro {
+  background:
+    linear-gradient(180deg, rgb(255 244 199 / 0.14), rgb(255 244 199 / 0.02) 55%),
+    rgb(82 53 47 / var(--vidro-alfa, 0.82));
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgb(255 244 199 / 0.28);
+  box-shadow:
+    inset 0 1px 0 rgb(255 244 199 / 0.3),
+    inset 0 -1px 0 rgb(0 0 0 / 0.12),
+    0 1px 2px rgb(41 28 24 / 0.16),
+    0 14px 30px -14px rgb(41 28 24 / 0.6);
+}
+
+/* Pílula ativa dentro do vidro: marrom mais fundo, como o "Home" do Figma */
+@utility vidro-ativo {
+  background: rgb(58 40 35 / 0.92);
+  box-shadow:
+    inset 0 1px 3px rgb(0 0 0 / 0.4),
+    inset 0 -1px 0 rgb(222 197 141 / 0.22),
+    0 1px 0 rgb(255 244 199 / 0.12);
 }
 
 /* Largura útil centralizada com margens fluidas */
