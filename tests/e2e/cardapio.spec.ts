@@ -394,3 +394,20 @@ test("brownie mini não tem recheio; no recheado, recheio é escolha única", as
   await expect(d.getByRole("button", { name: "Ninho", exact: true })).toHaveAttribute("aria-pressed", "false");
   await expect(d.getByRole("button", { name: "Nutella", exact: true })).toHaveAttribute("aria-pressed", "true");
 });
+
+test("quantidade pode ser apagada e digitada; abaixo do mínimo volta ao mínimo", async ({ page }) => {
+  await page.goto("/");
+  await abrirProduto(page, "palha-tradicional-5x5");
+  const d = dialogo(page);
+  const campo = d.locator(".seletor-quantidade input");
+  await campo.click();
+  await page.keyboard.press("Backspace");
+  await expect(campo).toHaveValue("");
+  await expect(campo).toHaveAttribute("placeholder", "30");
+  await page.keyboard.type("100");
+  await expect(d.locator(".detalhe-acao button")).toHaveText(/R\$\s?400,00/);
+  await campo.click();
+  await page.keyboard.type("5");
+  await d.getByRole("heading", { level: 2 }).click();
+  await expect(campo).toHaveValue("30");
+});

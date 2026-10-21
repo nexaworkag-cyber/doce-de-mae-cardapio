@@ -109,7 +109,9 @@
   stroke-linecap: round;
 }
 .seletor-quantidade input {
-  width: 3.25ch;
+  width: 4.5ch;
+  padding: 0;
+  border-radius: 0.5rem;
   border: 0;
   background: transparent;
   color: var(--color-tinta);
@@ -119,6 +121,13 @@
   text-align: right;
   -moz-appearance: textfield;
   appearance: textfield;
+}
+.seletor-quantidade input::placeholder {
+  color: var(--color-tinta-suave);
+  opacity: 0.5;
+}
+.seletor-quantidade input:focus-visible {
+  outline-offset: 2px;
 }
 .seletor-quantidade input::-webkit-outer-spin-button,
 .seletor-quantidade input::-webkit-inner-spin-button {
